@@ -214,6 +214,10 @@
     filter:brightness(1.08);
   }
 
+  .desktop-inline{
+    display:none;
+  }
+
   @media (max-width:820px){
     .hero-content{
       padding:72px 20px 44px;
@@ -223,25 +227,67 @@
     main{padding:0 20px 24px;}
     .game-section,
     .game-section:nth-child(even){
-      flex-direction:column;
-      align-items:stretch;
-      min-height:0;
-    }
-    .game-bg-video,
-    .game-phone{
-      display:none;
+      display:block;
+      min-height:600px;
+      padding:0;
     }
     .game-scrim,
     .game-section:nth-child(even) .game-scrim{
-      background:var(--bg-card);
+      background:linear-gradient(180deg,
+        transparent 0%,
+        rgba(23,26,33,.3) 26%,
+        rgba(23,26,33,.9) 46%,
+        var(--bg-card) 62%,
+        var(--bg-card) 100%);
+    }
+    .game-phone{
+      display:block;
+      position:absolute;
+      inset:0;
+      z-index:0;
+      width:100%;
+      height:100%;
+      aspect-ratio:auto;
+      max-height:none;
+      border-radius:0;
+      border:none;
+      box-shadow:none;
+    }
+    .game-bg-video{
+      display:none;
+    }
+    .game-section:not(:has(.game-phone)) .game-bg-video{
+      display:block;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      aspect-ratio:auto;
+      z-index:0;
+      border-radius:0;
+      border:none;
+      box-shadow:none;
+      filter:none;
     }
     .game-info{
+      position:relative;
+      z-index:3;
       max-width:none;
-      padding:24px 20px;
+      padding:300px 20px 28px;
     }
     .game-title-row h2{font-size:1.5rem;}
     .summary{font-size:15px;}
     .hard-part{font-size:13px;}
+
+    .game-section:has(.game-phone) .desktop-inline{
+      display:block;
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:10px;
+      border:1px solid var(--border);
+      margin-top:6px;
+    }
   }
 
   @media (max-width:480px){
@@ -317,6 +363,7 @@
       <p class="summary" data-lang="es">Un juego de dados y objetivos donde corrés para completar las combinaciones de menor costo antes que tus rivales.</p>
       <div class="hard-part" data-lang="en"><b>The hard part:</b> the solo bot doesn't roll dice — it takes the lowest-value objective directly. The rest of the game is built entirely around the roll, so fitting a turn that works differently without breaking that flow was the real work.</div>
       <div class="hard-part" data-lang="es"><b>Lo difícil:</b> el bot del modo solitario no tira dados, toma directamente el objetivo de menor valor. Todo el resto del juego está armado alrededor de la tirada, así que encajar un turno que funciona distinto sin romper ese flujo fue el trabajo real.</div>
+      <video class="desktop-inline" src="assets/video/216.mp4" muted loop playsinline autoplay></video>
       <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=twohundredsixteen" target="_blank" rel="noopener">
         <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
       </a></div>
@@ -338,6 +385,7 @@
       <p class="summary" data-lang="es">Un juego de colocación de losetas donde cuatro jugadores comparten el mismo campo central, cada uno desde su propio punto de vista.</p>
       <div class="hard-part" data-lang="en"><b>The hard part:</b> double tiles can't be rotated, but the shared central field is viewed from a different angle by each of the 4 players — the same piece can be placed in up to four different ways depending on who's taking it.</div>
       <div class="hard-part" data-lang="es"><b>Lo difícil:</b> las losetas dobles no se pueden rotar, pero el campo central se ve desde un ángulo distinto para cada uno de los cuatro jugadores: la misma pieza se puede colocar de hasta cuatro formas diferentes según quién la toma.</div>
+      <video class="desktop-inline" src="assets/video/girasoles.mp4" muted loop playsinline autoplay></video>
       <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=girasoles" target="_blank" rel="noopener">
         <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
       </a></div>
@@ -359,6 +407,7 @@
       <p class="summary" data-lang="es">Un duelo de a dos inspirado en los arcades de lucha — cada carta tiene una habilidad propia.</p>
       <div class="hard-part" data-lang="en"><b>The hard part:</b> both players choose at the same time and only then is it revealed — the server has to hold hidden decisions and resolve the clash without either side spying on the other. On top of that, several cards combo off whatever was played before, so there's no generic matchup table; each clash resolves as its own case.</div>
       <div class="hard-part" data-lang="es"><b>Lo difícil:</b> los dos jugadores eligen a la vez y recién después se revela — el servidor tiene que guardar las decisiones ocultas y resolver el choque sin que ninguno espíe al otro. Además varias cartas generan combos según qué se jugó antes: no hay tabla genérica, cada choque es un caso particular.</div>
+      <video class="desktop-inline" src="assets/video/rivales.mp4" muted loop playsinline autoplay></video>
       <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=rivales" target="_blank" rel="noopener">
         <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
       </a></div>
@@ -380,6 +429,7 @@
       <p class="summary" data-lang="es">Un juego para chicos sobre entregar paquetes en dinosaurio, pensado para entenderse sin leer una palabra.</p>
       <div class="hard-part" data-lang="en"><b>The hard part:</b> it's for kids, and that changes every design decision — the interface has to explain itself: big zones, near-zero required text, instant feedback on every action.</div>
       <div class="hard-part" data-lang="es"><b>Lo difícil:</b> es para chicos, y eso cambia todo el criterio de diseño: la interfaz tiene que explicarse sola. Zonas grandes, cero texto imprescindible y feedback inmediato de cada acción.</div>
+      <video class="desktop-inline" src="assets/video/dinodelivery.mp4" muted loop playsinline autoplay></video>
       <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
         <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
       </a></div>
@@ -421,6 +471,7 @@
       <p class="summary" data-lang="es">Un juego de cartas con cincuenta cartas, cada una con su propio efecto y sus propias interacciones con el resto.</p>
       <div class="hard-part" data-lang="en"><b>The hard part:</b> the turn skeleton resolves quickly, but coding and testing each of the fifty effects — and every cross-interaction between them, one by one — is the bulk of the project.</div>
       <div class="hard-part" data-lang="es"><b>Lo difícil:</b> el esqueleto del turno se resuelve rápido, pero programar y testear cada uno de los cincuenta efectos, y sus cruces, uno por uno, es el grueso del proyecto.</div>
+      <video class="desktop-inline" src="assets/video/scripta.mp4" muted loop playsinline autoplay></video>
       <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=scripta" target="_blank" rel="noopener">
         <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
       </a></div>
