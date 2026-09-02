@@ -358,19 +358,41 @@
     color:var(--text-dim);
   }
 
-  .faq-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
-    gap:28px 48px;
+  .faq-list{max-width:840px;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-item:first-child{border-top:1px solid var(--border);}
+  .faq-item summary{
+    position:relative;
+    list-style:none;
+    cursor:pointer;
+    padding:14px 34px 14px 0;
+    font-size:15px;
+    font-weight:600;
+    color:var(--text);
   }
-  .faq-item h3{
-    margin:0 0 8px;
-    font-size:1rem;
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary:hover{color:var(--accent);}
+  .faq-item summary::after{
+    content:"";
+    position:absolute;
+    right:8px;
+    top:calc(50% - 6px);
+    width:8px;
+    height:8px;
+    border-right:2px solid var(--text-dim);
+    border-bottom:2px solid var(--text-dim);
+    transform:rotate(45deg);
+    transition:transform 0.2s ease;
+  }
+  .faq-item[open] summary::after{
+    top:calc(50% - 2px);
+    transform:rotate(225deg);
   }
   .faq-item p{
-    margin:0;
+    margin:0 0 18px;
     color:var(--text-dim);
     font-size:15px;
+    max-width:72ch;
   }
 
   .contact{text-align:center;}
@@ -385,19 +407,12 @@
   }
 
   footer{
-    max-width:1080px;
+    max-width:820px;
     margin:0 auto;
-    padding:56px 24px 80px;
+    padding:30px 24px 44px;
     text-align:center;
     color:var(--text-dim);
-    font-size:14px;
-  }
-  footer .links{
-    display:flex;
-    gap:22px;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin-top:14px;
+    font-size:13px;
   }
 
   /* ---------- responsive ---------- */
@@ -411,16 +426,19 @@
     .game-section,
     .game-section:nth-of-type(even){
       display:block;
-      min-height:600px;
+      min-height:0;
       padding:0;
+      margin-bottom:20px;
     }
+    /* Stops in px rather than %, so the fade always lands just above the
+       text block instead of moving with the card's height. */
     .game-scrim,
     .game-section:nth-of-type(even) .game-scrim{
       background:linear-gradient(180deg,
-        transparent 0%,
-        rgba(23,26,33,.3) 26%,
-        rgba(23,26,33,.9) 46%,
-        var(--bg-card) 62%,
+        transparent 0px,
+        rgba(23,26,33,.28) 95px,
+        rgba(23,26,33,.88) 150px,
+        var(--bg-card) 192px,
         var(--bg-card) 100%);
     }
     .game-phone{
@@ -456,11 +474,12 @@
       position:relative;
       z-index:3;
       max-width:none;
-      padding:300px 20px 28px;
+      gap:10px;
+      padding:190px 18px 22px;
     }
     .game-title-row h2{font-size:1.5rem;}
     .summary{font-size:15px;}
-    .hard-part{font-size:13px;}
+    .hard-part{font-size:13px;line-height:1.45;}
 
     .game-section:has(.game-phone) .desktop-inline{
       display:block;
@@ -472,9 +491,12 @@
       margin-top:6px;
     }
 
-    .panel{padding:30px 22px;}
+    .panel{padding:28px 20px;}
     .section-title{font-size:1.4rem;}
-    .faq-grid{gap:24px;}
+    .section-sub{margin-bottom:22px;}
+    .step{padding:15px 0;}
+    .needs{margin-top:24px;padding-top:22px;}
+    .needs-grid{gap:14px;}
   }
 
   @media (max-width:700px){
@@ -500,8 +522,7 @@
       text-align:center;
     }
     .step{gap:14px;}
-    footer{padding:40px 20px 56px;}
-    footer .links{gap:14px 18px;}
+    footer{padding:26px 20px 40px;}
   }
 
   /* ---------- language switch ---------- */
@@ -776,43 +797,37 @@
   <p class="section-sub" data-lang="en">The things publishers ask me before we start.</p>
   <p class="section-sub" data-lang="es">Lo que me preguntan las editoriales antes de empezar.</p>
 
-  <div class="faq-grid">
-    <div class="faq-item">
-      <h3 data-lang="en">How long does an implementation take?</h3>
-      <h3 data-lang="es">¿Cuánto tarda una implementación?</h3>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary><span data-lang="en">How long does an implementation take?</span><span data-lang="es">¿Cuánto tarda una implementación?</span></summary>
       <p data-lang="en">It depends on the game. A simple turn with few exceptions moves fast; fifty unique cards that interact with each other takes far longer, and most of that time goes into testing the cross-interactions. I give you a real estimate after reading the rulebook, not before.</p>
       <p data-lang="es">Depende del juego. Un turno simple con pocas excepciones avanza rápido; cincuenta cartas únicas que interactúan entre sí lleva mucho más, y el grueso de ese tiempo es testear los cruces. Te doy una estimación concreta después de leer el reglamento, no antes.</p>
-    </div>
-    <div class="faq-item">
-      <h3 data-lang="en">Who owns the game and the artwork?</h3>
-      <h3 data-lang="es">¿Quién es dueño del juego y del arte?</h3>
+    </details>
+    <details class="faq-item">
+      <summary><span data-lang="en">Who owns the game and the artwork?</span><span data-lang="es">¿Quién es dueño del juego y del arte?</span></summary>
       <p data-lang="en">The publisher. I claim no rights over the game or the assets — the development is work done on property that stays yours.</p>
       <p data-lang="es">La editorial. Yo no reclamo derechos sobre el juego ni sobre los assets: el desarrollo es trabajo sobre una propiedad que sigue siendo tuya.</p>
-    </div>
-    <div class="faq-item">
-      <h3 data-lang="en">How does revenue work on Board Game Arena?</h3>
-      <h3 data-lang="es">¿Cómo funciona el ingreso en Board Game Arena?</h3>
+    </details>
+    <details class="faq-item">
+      <summary><span data-lang="en">How does revenue work on Board Game Arena?</span><span data-lang="es">¿Cómo funciona el ingreso en Board Game Arena?</span></summary>
       <p data-lang="en">The license is signed between the publisher and BGA, and BGA shares premium subscription revenue based on how much each game is played. I'm not part of that agreement — my side is the development, and it's agreed separately with you.</p>
       <p data-lang="es">La licencia se firma entre la editorial y BGA, y BGA reparte ingresos de las suscripciones premium según cuánto se juega cada juego. Yo no participo de ese acuerdo: mi parte es el desarrollo y se acuerda aparte con vos.</p>
-    </div>
-    <div class="faq-item">
-      <h3 data-lang="en">Do you work alone?</h3>
-      <h3 data-lang="es">¿Trabajás solo?</h3>
+    </details>
+    <details class="faq-item">
+      <summary><span data-lang="en">Do you work alone?</span><span data-lang="es">¿Trabajás solo?</span></summary>
       <p data-lang="en">Yes. Rules, interface, mobile and testing are all mine, so there's a single person between the rulebook and the code and nothing gets lost in translation. For open testing I lean on the BGA alpha tester community.</p>
       <p data-lang="es">Sí. Reglas, interfaz, celular y testeo los hago yo, así que hay una sola persona entre el reglamento y el código y no hay teléfono descompuesto. Para el testeo abierto me apoyo en la comunidad de alpha testers de BGA.</p>
-    </div>
-    <div class="faq-item">
-      <h3 data-lang="en">What happens after launch?</h3>
-      <h3 data-lang="es">¿Qué pasa después del lanzamiento?</h3>
+    </details>
+    <details class="faq-item">
+      <summary><span data-lang="en">What happens after launch?</span><span data-lang="es">¿Qué pasa después del lanzamiento?</span></summary>
       <p data-lang="en">I stay with the game: bugs reported by players, interface adjustments, and updates when an expansion comes out or a rule is corrected.</p>
       <p data-lang="es">Me quedo con el juego: bugs que reportan los jugadores, ajustes de interfaz, y actualizaciones si sale una expansión o se corrige una regla.</p>
-    </div>
-    <div class="faq-item">
-      <h3 data-lang="en">What languages do you work in?</h3>
-      <h3 data-lang="es">¿En qué idiomas trabajás?</h3>
+    </details>
+    <details class="faq-item">
+      <summary><span data-lang="en">What languages do you work in?</span><span data-lang="es">¿En qué idiomas trabajás?</span></summary>
       <p data-lang="en">Spanish and English. The game ships wired into BGA's translation system, so the community can add the rest of the languages on top.</p>
       <p data-lang="es">Español e inglés. El juego se sube enganchado al sistema de traducción de BGA, así que la comunidad puede sumar el resto de los idiomas encima.</p>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -835,13 +850,8 @@
 </main>
 
 <footer>
-  <div data-lang="en">Board Game Arena developer — bringing published tabletop games to BGA, from core rules to mobile-ready, replay-ready, zombie-mode-ready release.</div>
-  <div data-lang="es">Desarrollador de Board Game Arena — llevo juegos de mesa publicados a BGA, desde las reglas base hasta un release listo para celular, replay y modo zombie.</div>
-  <div class="links">
-    <a href="mailto:joaquinkoncurat@gmail.com">joaquinkoncurat@gmail.com</a>
-    <a href="https://studio.boardgamearena.com/player?id=2379824" target="_blank" rel="noopener">BGA Studio profile</a>
-    <a href="https://boardgamearena.com/player?id=88513542" target="_blank" rel="noopener">BGA profile</a>
-  </div>
+  <span data-lang="en">Board Game Arena developer — published tabletop games taken to BGA, from core rules to a mobile-ready, replay-ready release.</span>
+  <span data-lang="es">Desarrollador de Board Game Arena — juegos de mesa publicados llevados a BGA, desde las reglas base hasta un release listo para celular y replay.</span>
 </footer>
 
 <script>
