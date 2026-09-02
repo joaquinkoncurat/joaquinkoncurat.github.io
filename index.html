@@ -194,6 +194,24 @@
     border-radius:16px;
     overflow:hidden;
   }
+  /* Cards fade in as they scroll into the window. Guarded behind the class
+     the script adds, so with no JS they simply render visible. */
+  .js-carousel .game-card{
+    opacity:0;
+    transform:translateY(12px) scale(0.985);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+  }
+  .js-carousel .game-card.card-in{
+    opacity:1;
+    transform:none;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .js-carousel .game-card{
+      transition:none;
+      opacity:1;
+      transform:none;
+    }
+  }
   .card-media{
     background:#0b0d11;
     border-bottom:1px solid var(--border);
@@ -217,31 +235,49 @@
     font-size:1.3rem;
     margin:0;
   }
+  /* The desktop clip, repeated inside the body for phones. On phones the
+     media strip is the vertical capture, so this is where the landscape
+     view goes. Only one of the two copies is ever visible, and a hidden
+     video has no box, never intersects and never downloads. */
+  .card-inline{display:none;}
 
-  .carousel-controls{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin-top:22px;
-  }
-  .car-btn{
-    flex:none;
-    width:38px;
-    height:38px;
+  /* Arrows sit beside the cards. On wide screens they fall in the page
+     gutter; once the gutter runs out they overlay the media strip, which
+     is why the narrow breakpoints move them down onto it. */
+  .carousel{position:relative;}
+  .car-side{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:5;
+    width:42px;
+    height:42px;
     border-radius:50%;
     border:1px solid var(--border);
-    background:transparent;
+    background:rgba(15,17,21,0.85);
+    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(6px);
     color:var(--text);
-    font-size:15px;
+    font-size:16px;
     line-height:1;
     cursor:pointer;
     display:flex;
     align-items:center;
     justify-content:center;
     font-family:inherit;
+    transition:opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
-  .car-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
-  .car-btn:disabled{opacity:0.3;cursor:default;}
+  .car-side.prev{left:-54px;}
+  .car-side.next{right:-54px;}
+  .car-side:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+  .car-side:disabled{opacity:0;pointer-events:none;}
+
+  .carousel-controls{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:20px;
+  }
   .car-status{
     font-size:13px;
     color:var(--text-dim);
@@ -465,6 +501,15 @@
     .needs-grid{gap:14px;}
   }
 
+  /* main is capped at 1180px with 24px of padding, so there is only room
+     for an outside arrow once the window is wider than 1240px. Below
+     that, bring them inside and drop them onto the media strip. */
+  @media (max-width:1240px){
+    .car-side{top:100px;transform:none;}
+    .car-side.prev{left:8px;}
+    .car-side.next{right:8px;}
+  }
+
   @media (max-width:1000px){
     .game-card{flex:0 0 calc((100% - 20px) / 2);}
   }
@@ -507,7 +552,23 @@
       filter:blur(20px) brightness(0.45);
     }
     .card-media.fill .card-video{position:relative;}
-    .carousel-track{gap:14px;}
+    /* Both recordings on a phone: the vertical capture is the media strip,
+       the landscape one sits under the text. */
+    .card-inline{
+      display:block;
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:10px;
+      border:1px solid var(--border);
+      margin-top:2px;
+    }
+    .car-side{top:190px;}
+    /* One card per view, so there is nothing to line the buttons up with.
+       Letting each card end at its own content beats stretching it and
+       leaving a gap above the button. */
+    .carousel-track{gap:14px;align-items:flex-start;}
+    .play-btn{margin-top:8px;}
     .games-head{margin-bottom:18px;}
     .carousel-controls{margin-top:18px;gap:12px;}
   }
@@ -583,13 +644,16 @@
 
   <div class="games-head">
     <div>
-      <h2 class="section-title" data-lang="en">Six games on Board Game Arena</h2>
-      <h2 class="section-title" data-lang="es">Seis juegos en Board Game Arena</h2>
+      <h2 class="section-title" data-lang="en">Six games I've taken to Board Game Arena</h2>
+      <h2 class="section-title" data-lang="es">Seis juegos que llevé a Board Game Arena</h2>
       <p class="section-sub" data-lang="en">All six playable right now, in alpha or beta.</p>
       <p class="section-sub" data-lang="es">Los seis jugables ahora mismo, en alpha o beta.</p>
     </div>
   </div>
 
+  <div class="carousel">
+  <button class="car-side prev" id="carPrev" type="button" aria-label="Previous">&#8592;</button>
+  <button class="car-side next" id="carNext" type="button" aria-label="Next">&#8594;</button>
   <div class="carousel-viewport" id="gamesViewport" tabindex="0" role="group" aria-label="Games">
     <ul class="carousel-track" id="gamesTrack">
 
@@ -607,8 +671,9 @@
           <div class="meta"><span data-lang="en">Colorido Juegos · 1–6 players · 30 min</span><span data-lang="es">Colorido Juegos · 1–6 jugadores · 30 min</span></div>
           <p class="summary" data-lang="en">A dice-and-objectives game where you race to complete the lowest-cost combinations before your rivals.</p>
           <p class="summary" data-lang="es">Un juego de dados y objetivos donde corrés para completar las combinaciones de menor costo antes que tus rivales.</p>
-          <div class="hard-part" data-lang="en"><b>The hard part:</b> the solo bot doesn't roll dice — it takes the lowest-value objective directly. The rest of the game is built entirely around the roll, so fitting a turn that works differently without breaking that flow was the real work.</div>
-          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> el bot del modo solitario no tira dados, toma directamente el objetivo de menor valor. Todo el resto del juego está armado alrededor de la tirada, así que encajar un turno que funciona distinto sin romper ese flujo fue el trabajo real.</div>
+          <div class="hard-part" data-lang="en"><b>The hard part:</b> the solo bot doesn't roll dice — it takes the lowest-value objective directly. The whole game is built around the roll, so I had to fit in a turn that works differently without breaking that flow.</div>
+          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> el bot del modo solitario no tira dados, toma directamente el objetivo de menor valor. Todo el juego está armado alrededor de la tirada, así que tuve que encajar un turno que funciona distinto sin romper ese flujo.</div>
+          <video class="card-inline" src="assets/video/216.mp4" poster="assets/img/poster/216.jpg" preload="none" muted loop playsinline></video>
           <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=twohundredsixteen" target="_blank" rel="noopener">
             <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
           </a></div>
@@ -629,8 +694,9 @@
           <div class="meta"><span data-lang="en">Colorido Juegos · 2–4 players · 30 min</span><span data-lang="es">Colorido Juegos · 2–4 jugadores · 30 min</span></div>
           <p class="summary" data-lang="en">A tile-placement game where four players share the same central field, each from their own point of view.</p>
           <p class="summary" data-lang="es">Un juego de colocación de losetas donde cuatro jugadores comparten el mismo campo central, cada uno desde su propio punto de vista.</p>
-          <div class="hard-part" data-lang="en"><b>The hard part:</b> double tiles can't be rotated, but the shared central field is viewed from a different angle by each of the 4 players — the same piece can be placed in up to four different ways depending on who's taking it.</div>
-          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> las losetas dobles no se pueden rotar, pero el campo central se ve desde un ángulo distinto para cada uno de los cuatro jugadores: la misma pieza se puede colocar de hasta cuatro formas diferentes según quién la toma.</div>
+          <div class="hard-part" data-lang="en"><b>The hard part:</b> double tiles can't be rotated, but each of the 4 players sees the shared central field from a different angle, so I had to resolve the same piece as up to four different placements depending on who takes it.</div>
+          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> las losetas dobles no se pueden rotar, pero cada uno de los cuatro jugadores ve el campo central desde un ángulo distinto, así que tuve que resolver la misma pieza como hasta cuatro colocaciones diferentes según quién la toma.</div>
+          <video class="card-inline" src="assets/video/girasoles.mp4" poster="assets/img/poster/girasoles.jpg" preload="none" muted loop playsinline></video>
           <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=girasoles" target="_blank" rel="noopener">
             <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
           </a></div>
@@ -651,8 +717,9 @@
           <div class="meta"><span data-lang="en">Pulga Escapista · 2 players · 30 min</span><span data-lang="es">Pulga Escapista · 2 jugadores · 30 min</span></div>
           <p class="summary" data-lang="en">A 1v1 duel inspired by fighting-game arcades — every card has its own unique ability.</p>
           <p class="summary" data-lang="es">Un duelo de a dos inspirado en los arcades de lucha — cada carta tiene una habilidad propia.</p>
-          <div class="hard-part" data-lang="en"><b>The hard part:</b> both players choose at the same time and only then is it revealed — the server has to hold hidden decisions and resolve the clash without either side spying on the other. On top of that, several cards combo off whatever was played before, so there's no generic matchup table; each clash resolves as its own case.</div>
-          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> los dos jugadores eligen a la vez y recién después se revela — el servidor tiene que guardar las decisiones ocultas y resolver el choque sin que ninguno espíe al otro. Además varias cartas generan combos según qué se jugó antes: no hay tabla genérica, cada choque es un caso particular.</div>
+          <div class="hard-part" data-lang="en"><b>The hard part:</b> both players choose at the same time and only then is it revealed, so I hold both hidden decisions on the server and resolve the clash without either side seeing the other. On top of that, several cards combo off whatever was played before, so I couldn't build a generic matchup table — I resolve each clash as its own case.</div>
+          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> los dos jugadores eligen a la vez y recién después se revela, así que guardo las dos decisiones ocultas en el servidor y resuelvo el choque sin que ninguno vea al otro. Además varias cartas generan combos según qué se jugó antes, así que no pude armar una tabla genérica: resuelvo cada choque como un caso particular.</div>
+          <video class="card-inline" src="assets/video/rivales.mp4" poster="assets/img/poster/rivales.jpg" preload="none" muted loop playsinline></video>
           <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=rivales" target="_blank" rel="noopener">
             <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
           </a></div>
@@ -673,8 +740,9 @@
           <div class="meta"><span data-lang="en">Colorido Juegos · 2–4 players · 30 min</span><span data-lang="es">Colorido Juegos · 2–4 jugadores · 30 min</span></div>
           <p class="summary" data-lang="en">A kids' game about delivering packages by dinosaur, built to be understood without reading a word.</p>
           <p class="summary" data-lang="es">Un juego para chicos sobre entregar paquetes en dinosaurio, pensado para entenderse sin leer una palabra.</p>
-          <div class="hard-part" data-lang="en"><b>The hard part:</b> it's for kids, and that changes every design decision — the interface has to explain itself: big zones, near-zero required text, instant feedback on every action.</div>
-          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> es para chicos, y eso cambia todo el criterio de diseño: la interfaz tiene que explicarse sola. Zonas grandes, cero texto imprescindible y feedback inmediato de cada acción.</div>
+          <div class="hard-part" data-lang="en"><b>The hard part:</b> it's for kids, and that changed every decision I made — I built the interface to explain itself: big zones, near-zero required text, instant feedback on every action.</div>
+          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> es para chicos, y eso cambió todas mis decisiones de diseño: armé la interfaz para que se explique sola. Zonas grandes, cero texto imprescindible y feedback inmediato de cada acción.</div>
+          <video class="card-inline" src="assets/video/dinodelivery.mp4" poster="assets/img/poster/dinodelivery.jpg" preload="none" muted loop playsinline></video>
           <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
             <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
           </a></div>
@@ -695,8 +763,8 @@
           <div class="meta"><span data-lang="en">Super Noob Games · 1–8 players · 20 min</span><span data-lang="es">Super Noob Games · 1–8 jugadores · 20 min</span></div>
           <p class="summary" data-lang="en">A roll-and-write for up to 8 players, all drawing on their own sheet from the same shared roll.</p>
           <p class="summary" data-lang="es">Un roll-and-write de hasta 8 jugadores, todos dibujando en su propia hoja a partir de la misma tirada compartida.</p>
-          <div class="hard-part" data-lang="en"><b>The hard part:</b> up to 8 players share the same roll and resolve their sheet in parallel — the server has to accept eight simultaneous plays before advancing.</div>
-          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> hasta ocho jugadores comparten la misma tirada y resuelven su hoja en paralelo — el sistema tiene que aceptar ocho jugadas simultáneas antes de avanzar.</div>
+          <div class="hard-part" data-lang="en"><b>The hard part:</b> up to 8 players share the same roll and fill in their sheet in parallel, so I had to make the server take eight simultaneous plays before advancing the round.</div>
+          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> hasta ocho jugadores comparten la misma tirada y llenan su hoja en paralelo, así que tuve que hacer que el servidor acepte ocho jugadas simultáneas antes de avanzar la ronda.</div>
           <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=japanesegarden" target="_blank" rel="noopener">
             <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
           </a></div>
@@ -717,8 +785,9 @@
           <div class="meta"><span data-lang="en">Cartón Pintado · 2–5 players · 20 min</span><span data-lang="es">Cartón Pintado · 2–5 jugadores · 20 min</span></div>
           <p class="summary" data-lang="en">A card game with fifty cards, each with its own effect and its own interactions with the rest.</p>
           <p class="summary" data-lang="es">Un juego de cartas con cincuenta cartas, cada una con su propio efecto y sus propias interacciones con el resto.</p>
-          <div class="hard-part" data-lang="en"><b>The hard part:</b> the turn skeleton resolves quickly, but coding and testing each of the fifty effects — and every cross-interaction between them, one by one — is the bulk of the project.</div>
-          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> el esqueleto del turno se resuelve rápido, pero programar y testear cada uno de los cincuenta efectos, y sus cruces, uno por uno, es el grueso del proyecto.</div>
+          <div class="hard-part" data-lang="en"><b>The hard part:</b> I got the turn skeleton working quickly, but coding and testing each of the fifty effects, and every cross-interaction between them one by one, is the bulk of the project.</div>
+          <div class="hard-part" data-lang="es"><b>Lo difícil:</b> el esqueleto del turno lo resolví rápido, pero programar y testear cada uno de los cincuenta efectos, y sus cruces uno por uno, es el grueso del proyecto.</div>
+          <video class="card-inline" src="assets/video/scripta.mp4" poster="assets/img/poster/scripta.jpg" preload="none" muted loop playsinline></video>
           <div class="play-btn"><a href="https://boardgamearena.com/gamepanel?game=scripta" target="_blank" rel="noopener">
             <span data-lang="en">Play on BGA</span><span data-lang="es">Jugar en BGA</span>
           </a></div>
@@ -727,10 +796,9 @@
 
     </ul>
   </div>
+  </div>
 
   <div class="carousel-controls">
-    <button class="car-btn" id="carPrev" type="button" aria-label="Previous">&#8592;</button>
-    <button class="car-btn" id="carNext" type="button" aria-label="Next">&#8594;</button>
     <span class="car-status" id="carStatus"></span>
     <div class="car-dots" id="carDots"></div>
   </div>
@@ -739,10 +807,10 @@
 
 <!-- ---------- process ---------- -->
 <section id="process" class="panel reveal">
-  <h2 class="section-title" data-lang="en">How we work</h2>
-  <h2 class="section-title" data-lang="es">Cómo trabajamos</h2>
-  <p class="section-sub" data-lang="en">The same five steps every time, so you always know where the project stands and what comes next.</p>
-  <p class="section-sub" data-lang="es">Los mismos cinco pasos siempre, así en cualquier momento sabés en qué estado está el proyecto y qué sigue.</p>
+  <h2 class="section-title" data-lang="en">How I work</h2>
+  <h2 class="section-title" data-lang="es">Cómo trabajo</h2>
+  <p class="section-sub" data-lang="en">I follow the same five steps every time, so you always know where the project stands and what comes next.</p>
+  <p class="section-sub" data-lang="es">Sigo los mismos cinco pasos siempre, así en cualquier momento sabés en qué estado está el proyecto y qué sigue.</p>
 
   <div class="steps">
     <div class="step">
@@ -768,8 +836,8 @@
       <div class="step-body">
         <h3 data-lang="en">Agreed scope</h3>
         <h3 data-lang="es">Alcance acordado</h3>
-        <p data-lang="en">We put the scope in writing: player counts, solo mode or bots, variants, expansions, languages and timeline.</p>
-        <p data-lang="es">Definimos por escrito qué entra: cantidad de jugadores, modo solitario o bots, variantes, expansiones, idiomas y plazos.</p>
+        <p data-lang="en">I put the scope in writing before I build: player counts, solo mode or bots, variants, expansions, languages and timeline.</p>
+        <p data-lang="es">Te dejo el alcance por escrito antes de arrancar: cantidad de jugadores, modo solitario o bots, variantes, expansiones, idiomas y plazos.</p>
       </div>
     </div>
     <div class="step">
@@ -777,8 +845,8 @@
       <div class="step-body">
         <h3 data-lang="en">Build</h3>
         <h3 data-lang="es">Desarrollo</h3>
-        <p data-lang="en">Full implementation: rules, interface, mobile, replays, notifications, zombie mode and the translation system. You can sit at the development table whenever you want.</p>
-        <p data-lang="es">Implementación completa: reglas, interfaz, celular, replays, notificaciones, modo zombie y sistema de traducción. Podés entrar a la mesa de desarrollo cuando quieras.</p>
+        <p data-lang="en">I implement all of it: rules, interface, mobile, replays, notifications, zombie mode and the translation system. You can sit at the development table whenever you want.</p>
+        <p data-lang="es">Implemento todo: reglas, interfaz, celular, replays, notificaciones, modo zombie y sistema de traducción. Podés entrar a la mesa de desarrollo cuando quieras.</p>
       </div>
     </div>
     <div class="step">
@@ -786,8 +854,8 @@
       <div class="step-body">
         <h3 data-lang="en">Test and release</h3>
         <h3 data-lang="es">Testeo y publicación</h3>
-        <p data-lang="en">Alpha with BGA testers, fixing misread rules, interface adjustments, and staying with the game after it goes public.</p>
-        <p data-lang="es">Alpha con testers de BGA, corrección de reglas mal interpretadas, ajustes de interfaz, y acompañamiento después del lanzamiento.</p>
+        <p data-lang="en">I run the alpha with BGA testers, fix the rules I read wrong, adjust the interface, and stay with the game after it goes public.</p>
+        <p data-lang="es">Corro la alpha con testers de BGA, corrijo las reglas que interpreté mal, ajusto la interfaz, y sigo con el juego después del lanzamiento.</p>
       </div>
     </div>
   </div>
@@ -855,8 +923,8 @@
     </details>
     <details class="faq-item">
       <summary><span data-lang="en">What languages do you work in?</span><span data-lang="es">¿En qué idiomas trabajás?</span></summary>
-      <p data-lang="en">Spanish and English. The game ships wired into BGA's translation system, so the community can add the rest of the languages on top.</p>
-      <p data-lang="es">Español e inglés. El juego se sube enganchado al sistema de traducción de BGA, así que la comunidad puede sumar el resto de los idiomas encima.</p>
+      <p data-lang="en">Spanish and English. I ship the game wired into BGA's translation system, so the community can add the rest of the languages on top.</p>
+      <p data-lang="es">Español e inglés. Subo el juego enganchado al sistema de traducción de BGA, así que la comunidad puede sumar el resto de los idiomas encima.</p>
     </details>
   </div>
 </section>
@@ -880,8 +948,8 @@
 </main>
 
 <footer>
-  <span data-lang="en">Board Game Arena developer — published tabletop games taken to BGA, from core rules to a mobile-ready, replay-ready release.</span>
-  <span data-lang="es">Desarrollador de Board Game Arena — juegos de mesa publicados llevados a BGA, desde las reglas base hasta un release listo para celular y replay.</span>
+  <span data-lang="en">Board Game Arena developer — I take published tabletop games to BGA, from core rules to a mobile-ready, replay-ready release.</span>
+  <span data-lang="es">Desarrollador de Board Game Arena — llevo juegos de mesa publicados a BGA, desde las reglas base hasta un release listo para celular y replay.</span>
 </footer>
 
 <script>
@@ -945,8 +1013,10 @@
     var nextBtn = document.getElementById('carNext');
     var status = document.getElementById('carStatus');
     var dotsBox = document.getElementById('carDots');
-    var page = 0;
+    var index = 0;
     var dotCount = -1;
+
+    document.getElementById('games').classList.add('js-carousel');
 
     function step(){
       var styles = getComputedStyle(track);
@@ -958,22 +1028,24 @@
     function perView(){
       return Math.max(1, Math.round(viewport.clientWidth / step()));
     }
-    function pageCount(){
-      return Math.max(1, Math.ceil(cards.length / perView()));
+    // One card per press, so the reachable positions are however many
+    // cards can still sit on the left edge. The dots count these, which is
+    // what keeps them agreeing with the counter.
+    function maxIndex(){
+      return Math.max(0, cards.length - perView());
     }
 
-    function goTo(p, smooth){
-      var last = pageCount() - 1;
-      page = Math.max(0, Math.min(p, last));
+    function goTo(i, smooth){
+      index = Math.max(0, Math.min(i, maxIndex()));
       viewport.scrollTo({
-        left: page * perView() * step(),
+        left: index * step(),
         behavior: smooth === false ? 'auto' : 'smooth'
       });
       render();
     }
 
     function buildDots(){
-      var n = pageCount();
+      var n = maxIndex() + 1;
       if(n === dotCount) return;
       dotCount = n;
       dotsBox.innerHTML = '';
@@ -981,7 +1053,7 @@
         var d = document.createElement('button');
         d.type = 'button';
         d.className = 'car-dot';
-        d.setAttribute('aria-label', 'Page ' + (i + 1));
+        d.setAttribute('aria-label', 'Position ' + (i + 1));
         (function(idx){
           d.addEventListener('click', function(){ goTo(idx); });
         })(i);
@@ -992,41 +1064,67 @@
     function render(){
       buildDots();
       var pv = perView();
-      var last = pageCount() - 1;
-      var first = page * pv + 1;
-      var end = Math.min(first + pv - 1, cards.length);
+      var first = index + 1;
+      var end = Math.min(index + pv, cards.length);
       var es = document.documentElement.classList.contains('lang-es');
       var range = first === end ? String(first) : first + '–' + end;
       status.textContent = range + (es ? ' de ' : ' of ') + cards.length;
-      prevBtn.disabled = page <= 0;
-      nextBtn.disabled = page >= last;
+      prevBtn.disabled = index <= 0;
+      nextBtn.disabled = index >= maxIndex();
       for(var i = 0; i < dotsBox.children.length; i++){
-        dotsBox.children[i].setAttribute('aria-current', i === page ? 'true' : 'false');
+        dotsBox.children[i].setAttribute('aria-current', i === index ? 'true' : 'false');
       }
     }
 
-    prevBtn.addEventListener('click', function(){ goTo(page - 1); });
-    nextBtn.addEventListener('click', function(){ goTo(page + 1); });
+    prevBtn.addEventListener('click', function(){ goTo(index - 1); });
+    nextBtn.addEventListener('click', function(){ goTo(index + 1); });
 
     viewport.addEventListener('keydown', function(e){
-      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(page + 1); }
-      else if(e.key === 'ArrowLeft'){ e.preventDefault(); goTo(page - 1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(index + 1); }
+      else if(e.key === 'ArrowLeft'){ e.preventDefault(); goTo(index - 1); }
     });
 
     var scrollTimer;
     viewport.addEventListener('scroll', function(){
       clearTimeout(scrollTimer);
       scrollTimer = setTimeout(function(){
-        var p = Math.round(viewport.scrollLeft / (perView() * step()));
-        if(p !== page){ page = p; render(); }
+        var i = Math.round(viewport.scrollLeft / step());
+        if(i !== index){ index = i; render(); }
       }, 90);
     });
 
     var resizeTimer;
     window.addEventListener('resize', function(){
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function(){ goTo(Math.min(page, pageCount() - 1), false); }, 150);
+      resizeTimer = setTimeout(function(){ goTo(Math.min(index, maxIndex()), false); }, 150);
     });
+
+    // Fade each card in as it enters the window, and reset it on the way
+    // out so it animates again on the way back. Entering cards are
+    // staggered left to right.
+    if('IntersectionObserver' in window){
+      var cardObserver = new IntersectionObserver(function(entries){
+        var entering = [];
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entering.push(entry.target);
+          } else {
+            entry.target.style.transitionDelay = '0ms';
+            entry.target.classList.remove('card-in');
+          }
+        });
+        entering.sort(function(a, b){
+          return a.getBoundingClientRect().left - b.getBoundingClientRect().left;
+        });
+        entering.forEach(function(card, i){
+          card.style.transitionDelay = (i * 70) + 'ms';
+          card.classList.add('card-in');
+        });
+      }, { root: viewport, threshold: 0.55 });
+      for(var c = 0; c < cards.length; c++){ cardObserver.observe(cards[c]); }
+    } else {
+      for(var k = 0; k < cards.length; k++){ cards[k].classList.add('card-in'); }
+    }
 
     window.__renderCarousel = render;
     render();
