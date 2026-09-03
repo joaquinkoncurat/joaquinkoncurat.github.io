@@ -255,9 +255,7 @@
   .game-card.view-desk .media-frame.wide{display:block;}
   .game-card.view-desk .media-frame.tall{display:none;}
   .game-card.view-phone .media-frame.tall{display:block;}
-  /* A game with no phone capture keeps its landscape clip even in phone
-     view, so the switch never leaves a card with an empty frame. */
-  .game-card.view-phone .media-frame.wide:not(.keep){display:none;}
+  .game-card.view-phone .media-frame.wide{display:none;}
 
   .view-toggle{
     display:none;
@@ -779,6 +777,41 @@
           </div>
         </li>
 
+        <!-- Japanese Garden -->
+        <li class="game-card" style="--ga:#34d399;--ga-soft:rgba(52,211,153,0.13);--ga-line:rgba(52,211,153,0.27)">
+          <div class="card-media">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="media-frame wide">
+              <video class="card-video desk" src="assets/video/japanesegarden.mp4" poster="assets/img/poster/japanesegarden.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
+            </div>
+            <div class="media-frame tall">
+              <video class="card-video mob" src="assets/video/mobile/japanesegarden.mp4" poster="assets/img/poster/mobile/japanesegarden.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Mobile view</span><span class="media-label" data-lang="es">Vista en celular</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="badge alpha">Alpha</span>
+            <div>
+              <h3>Japanese Garden</h3>
+              <p class="meta"><span data-lang="en">Super Noob Games &nbsp;·&nbsp; 1–8p &nbsp;·&nbsp; 20–50 min</span><span data-lang="es">Super Noob Games &nbsp;·&nbsp; 1–8j &nbsp;·&nbsp; 20–50 min</span></p>
+            </div>
+            <p class="summary" data-lang="en">A roll-and-write for up to 8 players, all drawing on their own sheet from the same shared roll.</p>
+            <p class="summary" data-lang="es">Un roll-and-write de hasta 8 jugadores, todos dibujando en su propia hoja a partir de la misma tirada compartida.</p>
+            <div class="hard-part">
+              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
+              <p data-lang="en">Up to 8 players share the same roll and fill in their sheet in parallel, so I had to make the server take eight simultaneous plays before advancing the round.</p>
+              <p data-lang="es">Hasta ocho jugadores comparten la misma tirada y llenan su hoja en paralelo, así que tuve que hacer que el servidor acepte ocho jugadas simultáneas antes de avanzar la ronda.</p>
+            </div>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=japanesegarden" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
+        </li>
+
         <!-- Rivales -->
         <li class="game-card" style="--ga:#fb923c;--ga-soft:rgba(251,146,60,0.13);--ga-line:rgba(251,146,60,0.27)">
           <div class="card-media">
@@ -813,68 +846,6 @@
           </div>
         </li>
 
-        <!-- Dino Delivery -->
-        <li class="game-card" style="--ga:#4ade80;--ga-soft:rgba(74,222,128,0.13);--ga-line:rgba(74,222,128,0.27)">
-          <div class="card-media">
-            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
-              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-            </button>            <div class="media-frame wide">
-              <video class="card-video desk" src="assets/video/dinodelivery.mp4" poster="assets/img/poster/dinodelivery.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
-            </div>
-            <div class="media-frame tall">
-              <video class="card-video mob" src="assets/video/mobile/dinodelivery.mp4" poster="assets/img/poster/mobile/dinodelivery.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Mobile view</span><span class="media-label" data-lang="es">Vista en celular</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <span class="badge alpha">Alpha</span>
-            <div>
-              <h3>Dino Delivery</h3>
-              <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 15–30 min</span></p>
-            </div>
-            <p class="summary" data-lang="en">A kids' game about delivering food orders by dinosaur, built to be understood without reading a word.</p>
-            <p class="summary" data-lang="es">Un juego para chicos sobre repartir pedidos de comida en dinosaurio, pensado para entenderse sin leer una palabra.</p>
-            <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">It's for kids, and that changed every decision I made — I built the interface to explain itself: big zones, near-zero required text, instant feedback on every action.</p>
-              <p data-lang="es">Es para chicos, y eso cambió todas mis decisiones de diseño: armé la interfaz para que se explique sola. Zonas grandes, cero texto imprescindible y feedback inmediato de cada acción.</p>
-            </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
-          </div>
-        </li>
-
-        <!-- Japanese Garden: no phone capture yet, so it shows the desktop
-             recording once and skips the bottom strip. -->
-        <li class="game-card" style="--ga:#34d399;--ga-soft:rgba(52,211,153,0.13);--ga-line:rgba(52,211,153,0.27)">
-          <div class="card-media">
-            <div class="media-frame wide keep">
-              <video class="card-video desk keep" src="assets/video/japanesegarden.mp4" poster="assets/img/poster/japanesegarden.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <span class="badge alpha">Alpha</span>
-            <div>
-              <h3>Japanese Garden</h3>
-              <p class="meta"><span data-lang="en">Super Noob Games &nbsp;·&nbsp; 1–8p &nbsp;·&nbsp; 20–50 min</span><span data-lang="es">Super Noob Games &nbsp;·&nbsp; 1–8j &nbsp;·&nbsp; 20–50 min</span></p>
-            </div>
-            <p class="summary" data-lang="en">A roll-and-write for up to 8 players, all drawing on their own sheet from the same shared roll.</p>
-            <p class="summary" data-lang="es">Un roll-and-write de hasta 8 jugadores, todos dibujando en su propia hoja a partir de la misma tirada compartida.</p>
-            <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">Up to 8 players share the same roll and fill in their sheet in parallel, so I had to make the server take eight simultaneous plays before advancing the round.</p>
-              <p data-lang="es">Hasta ocho jugadores comparten la misma tirada y llenan su hoja en paralelo, así que tuve que hacer que el servidor acepte ocho jugadas simultáneas antes de avanzar la ronda.</p>
-            </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=japanesegarden" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
-          </div>
-        </li>
-
         <!-- Scripta -->
         <li class="game-card" style="--ga:#a78bfa;--ga-soft:rgba(167,139,250,0.13);--ga-line:rgba(167,139,250,0.27)">
           <div class="card-media">
@@ -904,6 +875,40 @@
               <p data-lang="es">El esqueleto del turno lo resolví rápido, pero programar y testear cada uno de los cincuenta efectos, y sus cruces uno por uno, es el grueso del proyecto.</p>
             </div>
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=scripta" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
+        </li>
+
+        <!-- Dino Delivery -->
+        <li class="game-card" style="--ga:#4ade80;--ga-soft:rgba(74,222,128,0.13);--ga-line:rgba(74,222,128,0.27)">
+          <div class="card-media">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>            <div class="media-frame wide">
+              <video class="card-video desk" src="assets/video/dinodelivery.mp4" poster="assets/img/poster/dinodelivery.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
+            </div>
+            <div class="media-frame tall">
+              <video class="card-video mob" src="assets/video/mobile/dinodelivery.mp4" poster="assets/img/poster/mobile/dinodelivery.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Mobile view</span><span class="media-label" data-lang="es">Vista en celular</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="badge alpha">Alpha</span>
+            <div>
+              <h3>Dino Delivery</h3>
+              <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 15–30 min</span></p>
+            </div>
+            <p class="summary" data-lang="en">A kids' game about delivering food orders by dinosaur, built to be understood without reading a word.</p>
+            <p class="summary" data-lang="es">Un juego para chicos sobre repartir pedidos de comida en dinosaurio, pensado para entenderse sin leer una palabra.</p>
+            <div class="hard-part">
+              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
+              <p data-lang="en">It's for kids, and that changed every decision I made — I built the interface to explain itself: big zones, near-zero required text, instant feedback on every action.</p>
+              <p data-lang="es">Es para chicos, y eso cambió todas mis decisiones de diseño: armé la interfaz para que se explique sola. Zonas grandes, cero texto imprescindible y feedback inmediato de cada acción.</p>
+            </div>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
             </a>
           </div>
