@@ -246,6 +246,21 @@
   }
   .js-carousel .game-card.card-in{opacity:1;transform:none;}
 
+  /* Title on the left, play button on the right, above the video. */
+  .card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px 16px 0;
+  }
+  .card-head h3{
+    font-size:1.15rem;
+    line-height:1.25;
+    color:#fff;
+    min-width:0;
+  }
+
   .card-media{position:relative;padding:12px 12px 0;}
 
   /* Which recording the card shows. Without JS only the landscape clip
@@ -377,14 +392,25 @@
     margin:0;
   }
   .play-link{
+    flex:none;
     display:inline-flex;
     align-items:center;
-    font-size:14px;
+    font-size:12px;
     font-weight:500;
     color:var(--ga);
-    padding-top:2px;
+    background:var(--ga-soft);
+    border:1px solid var(--ga-line);
+    border-radius:999px;
+    padding:5px 12px;
+    white-space:nowrap;
+    transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
-  .play-link:hover{text-decoration:underline;}
+  .play-link:hover{
+    background:var(--ga);
+    border-color:var(--ga);
+    color:#0a0a0a;
+    text-decoration:none;
+  }
 
   /* Arrows beside the cards: in the page gutter when there is room,
      over the media strip when there is not. */
@@ -711,6 +737,12 @@
 
         <!-- 216 -->
         <li class="game-card" style="--ga:#38bdf8;--ga-soft:rgba(56,189,248,0.13);--ga-line:rgba(56,189,248,0.27)">
+          <div class="card-head">
+            <h3>216</h3>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=twohundredsixteen" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
           <div class="card-media">
             <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
               <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -725,11 +757,8 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="badge beta">Beta</span>
-            <div>
-              <h3>216</h3>
-              <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 1–6p &nbsp;·&nbsp; 15–60 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 1–6j &nbsp;·&nbsp; 15–60 min</span></p>
-            </div>
+            <span class="badge beta"><span data-lang="en">Public beta</span><span data-lang="es">Versión Beta pública</span></span>
+            <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 1–6p &nbsp;·&nbsp; 15–60 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 1–6j &nbsp;·&nbsp; 15–60 min</span></p>
             <p class="summary" data-lang="en">A dice-and-objectives game in which players compete to complete the lowest-cost combinations before their rivals.</p>
             <p class="summary" data-lang="es">Un juego de dados y objetivos en el que los jugadores compiten para completar las combinaciones de menor costo antes que sus rivales.</p>
             <div class="hard-part">
@@ -737,14 +766,17 @@
               <p data-lang="en">The solo bot does not roll dice: it selects the lowest-value objective directly. The rest of the game is built around the roll, so this required a distinct turn structure for the bot that preserves the game's overall flow.</p>
               <p data-lang="es">El bot del modo solitario no tira dados: selecciona directamente el objetivo de menor valor. El resto del juego está construido alrededor de la tirada, por lo que fue necesario diseñar una estructura de turno distinta para el bot que preserve el flujo general del juego.</p>
             </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=twohundredsixteen" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
           </div>
         </li>
 
         <!-- Girasoles -->
         <li class="game-card" style="--ga:#fbbf24;--ga-soft:rgba(251,191,36,0.13);--ga-line:rgba(251,191,36,0.27)">
+          <div class="card-head">
+            <h3>Girasoles</h3>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=girasoles" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
           <div class="card-media">
             <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
               <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -759,11 +791,8 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="badge alpha">Alpha</span>
-            <div>
-              <h3>Girasoles</h3>
-              <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 30–60 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 30–60 min</span></p>
-            </div>
+            <span class="badge alpha"><span data-lang="en">Public alpha</span><span data-lang="es">Versión Alpha pública</span></span>
+            <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 30–60 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 30–60 min</span></p>
             <p class="summary" data-lang="en">A tile-placement game in which four players share the same central field, each from a different point of view.</p>
             <p class="summary" data-lang="es">Un juego de colocación de losetas en el que cuatro jugadores comparten el mismo campo central, cada uno desde un punto de vista distinto.</p>
             <div class="hard-part">
@@ -771,14 +800,17 @@
               <p data-lang="en">Double tiles cannot be rotated, and each of the four players views the shared central field from a different angle. This meant resolving the same piece as up to four distinct placements, depending on which player is placing it.</p>
               <p data-lang="es">Las losetas dobles no se pueden rotar, y cada uno de los cuatro jugadores ve el campo central compartido desde un ángulo distinto. Esto implicó resolver la misma pieza como hasta cuatro colocaciones distintas, según qué jugador la está ubicando.</p>
             </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=girasoles" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
           </div>
         </li>
 
         <!-- Japanese Garden -->
         <li class="game-card" style="--ga:#34d399;--ga-soft:rgba(52,211,153,0.13);--ga-line:rgba(52,211,153,0.27)">
+          <div class="card-head">
+            <h3>Japanese Garden</h3>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=japanesegarden" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
           <div class="card-media">
             <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
               <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -794,11 +826,8 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="badge alpha">Alpha</span>
-            <div>
-              <h3>Japanese Garden</h3>
-              <p class="meta"><span data-lang="en">Super Noob Games &nbsp;·&nbsp; 1–8p &nbsp;·&nbsp; 20–50 min</span><span data-lang="es">Super Noob Games &nbsp;·&nbsp; 1–8j &nbsp;·&nbsp; 20–50 min</span></p>
-            </div>
+            <span class="badge alpha"><span data-lang="en">Public alpha</span><span data-lang="es">Versión Alpha pública</span></span>
+            <p class="meta"><span data-lang="en">Super Noob Games &nbsp;·&nbsp; 1–8p &nbsp;·&nbsp; 20–50 min</span><span data-lang="es">Super Noob Games &nbsp;·&nbsp; 1–8j &nbsp;·&nbsp; 20–50 min</span></p>
             <p class="summary" data-lang="en">A roll-and-write for up to eight players, each drawing on an individual sheet from the same shared roll.</p>
             <p class="summary" data-lang="es">Un roll-and-write para hasta ocho jugadores, cada uno completando su propia hoja a partir de la misma tirada compartida.</p>
             <div class="hard-part">
@@ -806,14 +835,17 @@
               <p data-lang="en">Up to eight players share the same roll and fill in their sheet in parallel. This required the server to accept eight simultaneous plays before advancing the round.</p>
               <p data-lang="es">Hasta ocho jugadores comparten la misma tirada y completan su hoja en paralelo. Esto requirió que el servidor acepte ocho jugadas simultáneas antes de avanzar la ronda.</p>
             </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=japanesegarden" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
           </div>
         </li>
 
         <!-- Rivales -->
         <li class="game-card" style="--ga:#fb923c;--ga-soft:rgba(251,146,60,0.13);--ga-line:rgba(251,146,60,0.27)">
+          <div class="card-head">
+            <h3>Rivales</h3>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=rivales" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
           <div class="card-media">
             <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
               <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -828,11 +860,8 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="badge alpha">Alpha</span>
-            <div>
-              <h3>Rivales</h3>
-              <p class="meta"><span data-lang="en">Pulga Escapista &nbsp;·&nbsp; 2p &nbsp;·&nbsp; 15 min</span><span data-lang="es">Pulga Escapista &nbsp;·&nbsp; 2j &nbsp;·&nbsp; 15 min</span></p>
-            </div>
+            <span class="badge alpha"><span data-lang="en">Public alpha</span><span data-lang="es">Versión Alpha pública</span></span>
+            <p class="meta"><span data-lang="en">Pulga Escapista &nbsp;·&nbsp; 2p &nbsp;·&nbsp; 15 min</span><span data-lang="es">Pulga Escapista &nbsp;·&nbsp; 2j &nbsp;·&nbsp; 15 min</span></p>
             <p class="summary" data-lang="en">A one-on-one duel inspired by arcade fighting games, in which every card carries its own unique ability.</p>
             <p class="summary" data-lang="es">Un duelo de a dos inspirado en los arcades de lucha, en el que cada carta tiene una habilidad propia.</p>
             <div class="hard-part">
@@ -840,14 +869,17 @@
               <p data-lang="en">Both players choose simultaneously, and the choice is revealed only afterward. This required holding both hidden decisions on the server and resolving the clash without either side seeing the other's choice in advance. Several cards also combo off whatever was played previously, which ruled out a generic matchup table: each clash is resolved as an individual case.</p>
               <p data-lang="es">Los dos jugadores eligen al mismo tiempo, y la elección se revela recién después. Esto requirió guardar ambas decisiones ocultas en el servidor y resolver el choque sin que ninguno de los dos vea la elección del otro por adelantado. Además, varias cartas generan combos según lo que se jugó antes, lo que descartó una tabla de enfrentamientos genérica: cada choque se resuelve como un caso individual.</p>
             </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=rivales" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
           </div>
         </li>
 
         <!-- Scripta -->
         <li class="game-card" style="--ga:#a78bfa;--ga-soft:rgba(167,139,250,0.13);--ga-line:rgba(167,139,250,0.27)">
+          <div class="card-head">
+            <h3>Scripta</h3>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=scripta" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
           <div class="card-media">
             <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
               <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -862,11 +894,8 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="badge alpha">Alpha</span>
-            <div>
-              <h3>Scripta</h3>
-              <p class="meta"><span data-lang="en">Cartón Pintado &nbsp;·&nbsp; 2–5p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Cartón Pintado &nbsp;·&nbsp; 2–5j &nbsp;·&nbsp; 15–30 min</span></p>
-            </div>
+            <span class="badge alpha"><span data-lang="en">Public alpha</span><span data-lang="es">Versión Alpha pública</span></span>
+            <p class="meta"><span data-lang="en">Cartón Pintado &nbsp;·&nbsp; 2–5p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Cartón Pintado &nbsp;·&nbsp; 2–5j &nbsp;·&nbsp; 15–30 min</span></p>
             <p class="summary" data-lang="en">A card game in which scholars decipher ancient texts, built from fifty cards that each carry a unique effect and interactions with the rest.</p>
             <p class="summary" data-lang="es">Un juego de cartas en el que eruditos descifran textos antiguos, con cincuenta cartas que tienen cada una su propio efecto e interacciones con el resto.</p>
             <div class="hard-part">
@@ -874,14 +903,17 @@
               <p data-lang="en">Most of the project involved coding and testing each card effect individually, along with its interactions with the rest, and designing an interface that communicates each effect clearly without overwhelming the player with text.</p>
               <p data-lang="es">La mayor parte del proyecto consistió en programar y testear cada efecto de carta de forma individual, junto con sus interacciones con el resto, y en diseñar una interfaz que comunique cada efecto con claridad sin abrumar al jugador con texto.</p>
             </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=scripta" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
           </div>
         </li>
 
         <!-- Dino Delivery -->
         <li class="game-card" style="--ga:#4ade80;--ga-soft:rgba(74,222,128,0.13);--ga-line:rgba(74,222,128,0.27)">
+          <div class="card-head">
+            <h3>Dino Delivery</h3>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
           <div class="card-media">
             <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
               <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -896,11 +928,8 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="badge alpha">Alpha</span>
-            <div>
-              <h3>Dino Delivery</h3>
-              <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 15–30 min</span></p>
-            </div>
+            <span class="badge alpha"><span data-lang="en">Public alpha</span><span data-lang="es">Versión Alpha pública</span></span>
+            <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 15–30 min</span></p>
             <p class="summary" data-lang="en">A children's game about delivering food orders by dinosaur, designed to be understood without reading a single word.</p>
             <p class="summary" data-lang="es">Un juego infantil sobre repartir pedidos de comida en dinosaurio, diseñado para entenderse sin leer una sola palabra.</p>
             <div class="hard-part">
@@ -908,9 +937,6 @@
               <p data-lang="en">The game is designed for children, which shaped every interface decision: large interactive zones, minimal required text, and immediate feedback on every action.</p>
               <p data-lang="es">El juego está diseñado para chicos, lo que definió cada decisión de interfaz: zonas grandes, texto mínimo y feedback inmediato en cada acción.</p>
             </div>
-            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
-              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
-            </a>
           </div>
         </li>
 
@@ -988,7 +1014,7 @@
       </li>
       <li>
         <span class="check" aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6 6.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span data-lang="en">A contact who knows the rules well and can answer edge-case questions as they arise</span><span data-lang="es">Un contacto que conozca bien las reglas y pueda responder preguntas sobre casos particulares a medida que surjan</span>
+        <span data-lang="en">A contact who knows the rules well and can answer edge-case questions promptly: an unresolved ambiguous rule can delay the entire build</span><span data-lang="es">Un contacto que conozca bien las reglas y responda a tiempo las preguntas sobre casos particulares: una regla ambigua sin resolver puede demorar todo el desarrollo</span>
       </li>
       <li>
         <span class="check" aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6 6.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -996,7 +1022,7 @@
       </li>
       <li>
         <span class="check" aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6 6.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span data-lang="en">Timely answers: an unresolved ambiguous rule can delay the entire build</span><span data-lang="es">Respuestas a tiempo: una regla ambigua sin resolver puede demorar todo el desarrollo</span>
+        <span data-lang="en">Every game mode, including solo mode, 2 vs 2, and any variants</span><span data-lang="es">Todos los modos de juego, incluyendo modo solitario, modos 2 vs 2 y cualquier variante</span>
       </li>
     </ul>
   </div>
