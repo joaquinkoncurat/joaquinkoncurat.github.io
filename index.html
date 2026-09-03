@@ -675,11 +675,11 @@
   <p class="eyebrow" data-lang="es">Desarrollador de juegos en BGA</p>
   <h1 data-lang="en">Your game on Board Game Arena, with every rule intact.</h1>
   <h1 data-lang="es">Tu juego en Board Game Arena, con todas las reglas.</h1>
-  <p class="hero-sub" data-lang="en">I turn rulebooks into code, not into summaries. Six published games back that up.</p>
+  <p class="hero-sub" data-lang="en">I turn rulebooks into code, not into summaries. Six published games demonstrate the approach.</p>
   <p class="hero-sub" data-lang="es">Traduzco reglamentos a código, no a resúmenes. Seis juegos publicados lo demuestran.</p>
   <div class="hero-cta">
     <a class="btn-primary" href="#contact">
-      <span data-lang="en">Let's talk about your game</span><span data-lang="es">Hablemos de tu juego</span>
+      <span data-lang="en">Discuss your game</span><span data-lang="es">Hablemos de tu juego</span>
     </a>
     <p class="hero-note" data-lang="en">Reading your rulebook and telling you whether it works on BGA costs nothing.</p>
     <p class="hero-note" data-lang="es">Leer tu reglamento y decirte si funciona en BGA no tiene costo.</p>
@@ -692,7 +692,7 @@
   <div class="games-head">
     <p class="eyebrow" data-lang="en">Published work</p>
     <p class="eyebrow" data-lang="es">Trabajo publicado</p>
-    <h2 class="section-title" data-lang="en">Six games I've taken to the platform.</h2>
+    <h2 class="section-title" data-lang="en">Six games I have taken to the platform.</h2>
     <h2 class="section-title" data-lang="es">Seis juegos que llevé a la plataforma.</h2>
     <p class="section-sub" data-lang="en">Playable today, with the publisher credited and a direct link.</p>
     <p class="section-sub" data-lang="es">Jugables hoy, con la editorial nombrada y el link directo.</p>
@@ -730,12 +730,12 @@
               <h3>216</h3>
               <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 1–6p &nbsp;·&nbsp; 15–60 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 1–6j &nbsp;·&nbsp; 15–60 min</span></p>
             </div>
-            <p class="summary" data-lang="en">A dice-and-objectives game where you race to complete the lowest-cost combinations before your rivals.</p>
-            <p class="summary" data-lang="es">Un juego de dados y objetivos donde corrés para completar las combinaciones de menor costo antes que tus rivales.</p>
+            <p class="summary" data-lang="en">A dice-and-objectives game in which players compete to complete the lowest-cost combinations before their rivals.</p>
+            <p class="summary" data-lang="es">Un juego de dados y objetivos en el que los jugadores compiten para completar las combinaciones de menor costo antes que sus rivales.</p>
             <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">The solo bot doesn't roll dice — it takes the lowest-value objective directly. The whole game is built around the roll, so I had to fit in a turn that works differently without breaking that flow.</p>
-              <p data-lang="es">El bot del modo solitario no tira dados, toma directamente el objetivo de menor valor. Todo el juego está armado alrededor de la tirada, así que tuve que encajar un turno que funciona distinto sin romper ese flujo.</p>
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">The solo bot does not roll dice: it selects the lowest-value objective directly. The rest of the game is built around the roll, so this required a distinct turn structure for the bot that preserves the game's overall flow.</p>
+              <p data-lang="es">El bot del modo solitario no tira dados: selecciona directamente el objetivo de menor valor. El resto del juego está construido alrededor de la tirada, por lo que fue necesario diseñar una estructura de turno distinta para el bot que preserve el flujo general del juego.</p>
             </div>
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=twohundredsixteen" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
@@ -764,12 +764,12 @@
               <h3>Girasoles</h3>
               <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 30–60 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 30–60 min</span></p>
             </div>
-            <p class="summary" data-lang="en">A tile-placement game where four players share the same central field, each from their own point of view.</p>
-            <p class="summary" data-lang="es">Un juego de colocación de losetas donde cuatro jugadores comparten el mismo campo central, cada uno desde su propio punto de vista.</p>
+            <p class="summary" data-lang="en">A tile-placement game in which four players share the same central field, each from a different point of view.</p>
+            <p class="summary" data-lang="es">Un juego de colocación de losetas en el que cuatro jugadores comparten el mismo campo central, cada uno desde un punto de vista distinto.</p>
             <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">Double tiles can't be rotated, but each of the 4 players sees the shared central field from a different angle, so I had to resolve the same piece as up to four different placements depending on who takes it.</p>
-              <p data-lang="es">Las losetas dobles no se pueden rotar, pero cada uno de los cuatro jugadores ve el campo central desde un ángulo distinto, así que tuve que resolver la misma pieza como hasta cuatro colocaciones diferentes según quién la toma.</p>
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">Double tiles cannot be rotated, and each of the four players views the shared central field from a different angle. This meant resolving the same piece as up to four distinct placements, depending on which player is placing it.</p>
+              <p data-lang="es">Las losetas dobles no se pueden rotar, y cada uno de los cuatro jugadores ve el campo central compartido desde un ángulo distinto. Esto implicó resolver la misma pieza como hasta cuatro colocaciones distintas, según qué jugador la está ubicando.</p>
             </div>
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=girasoles" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
@@ -799,12 +799,12 @@
               <h3>Japanese Garden</h3>
               <p class="meta"><span data-lang="en">Super Noob Games &nbsp;·&nbsp; 1–8p &nbsp;·&nbsp; 20–50 min</span><span data-lang="es">Super Noob Games &nbsp;·&nbsp; 1–8j &nbsp;·&nbsp; 20–50 min</span></p>
             </div>
-            <p class="summary" data-lang="en">A roll-and-write for up to 8 players, all drawing on their own sheet from the same shared roll.</p>
-            <p class="summary" data-lang="es">Un roll-and-write de hasta 8 jugadores, todos dibujando en su propia hoja a partir de la misma tirada compartida.</p>
+            <p class="summary" data-lang="en">A roll-and-write for up to eight players, each drawing on an individual sheet from the same shared roll.</p>
+            <p class="summary" data-lang="es">Un roll-and-write para hasta ocho jugadores, cada uno completando su propia hoja a partir de la misma tirada compartida.</p>
             <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">Up to 8 players share the same roll and fill in their sheet in parallel, so I had to make the server take eight simultaneous plays before advancing the round.</p>
-              <p data-lang="es">Hasta ocho jugadores comparten la misma tirada y llenan su hoja en paralelo, así que tuve que hacer que el servidor acepte ocho jugadas simultáneas antes de avanzar la ronda.</p>
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">Up to eight players share the same roll and fill in their sheet in parallel. This required the server to accept eight simultaneous plays before advancing the round.</p>
+              <p data-lang="es">Hasta ocho jugadores comparten la misma tirada y completan su hoja en paralelo. Esto requirió que el servidor acepte ocho jugadas simultáneas antes de avanzar la ronda.</p>
             </div>
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=japanesegarden" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
@@ -833,12 +833,12 @@
               <h3>Rivales</h3>
               <p class="meta"><span data-lang="en">Pulga Escapista &nbsp;·&nbsp; 2p &nbsp;·&nbsp; 15 min</span><span data-lang="es">Pulga Escapista &nbsp;·&nbsp; 2j &nbsp;·&nbsp; 15 min</span></p>
             </div>
-            <p class="summary" data-lang="en">A 1v1 duel inspired by fighting-game arcades — every card has its own unique ability.</p>
-            <p class="summary" data-lang="es">Un duelo de a dos inspirado en los arcades de lucha — cada carta tiene una habilidad propia.</p>
+            <p class="summary" data-lang="en">A one-on-one duel inspired by arcade fighting games, in which every card carries its own unique ability.</p>
+            <p class="summary" data-lang="es">Un duelo de a dos inspirado en los arcades de lucha, en el que cada carta tiene una habilidad propia.</p>
             <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">Both players choose at the same time and only then is it revealed, so I hold both hidden decisions on the server and resolve the clash without either side seeing the other. Several cards combo off whatever was played before, so I couldn't build a generic matchup table — I resolve each clash as its own case.</p>
-              <p data-lang="es">Los dos jugadores eligen a la vez y recién después se revela, así que guardo las dos decisiones ocultas en el servidor y resuelvo el choque sin que ninguno vea al otro. Varias cartas generan combos según qué se jugó antes, así que no pude armar una tabla genérica: resuelvo cada choque como un caso particular.</p>
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">Both players choose simultaneously, and the choice is revealed only afterward. This required holding both hidden decisions on the server and resolving the clash without either side seeing the other's choice in advance. Several cards also combo off whatever was played previously, which ruled out a generic matchup table: each clash is resolved as an individual case.</p>
+              <p data-lang="es">Los dos jugadores eligen al mismo tiempo, y la elección se revela recién después. Esto requirió guardar ambas decisiones ocultas en el servidor y resolver el choque sin que ninguno de los dos vea la elección del otro por adelantado. Además, varias cartas generan combos según lo que se jugó antes, lo que descartó una tabla de enfrentamientos genérica: cada choque se resuelve como un caso individual.</p>
             </div>
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=rivales" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
@@ -867,12 +867,12 @@
               <h3>Scripta</h3>
               <p class="meta"><span data-lang="en">Cartón Pintado &nbsp;·&nbsp; 2–5p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Cartón Pintado &nbsp;·&nbsp; 2–5j &nbsp;·&nbsp; 15–30 min</span></p>
             </div>
-            <p class="summary" data-lang="en">Scholars deciphering ancient texts, across fifty cards that each carry their own effect and their own interactions with the rest.</p>
-            <p class="summary" data-lang="es">Eruditos descifrando textos antiguos, en cincuenta cartas donde cada una tiene su propio efecto y sus propias interacciones con el resto.</p>
+            <p class="summary" data-lang="en">A card game in which scholars decipher ancient texts, built from fifty cards that each carry a unique effect and interactions with the rest.</p>
+            <p class="summary" data-lang="es">Un juego de cartas en el que eruditos descifran textos antiguos, con cincuenta cartas que tienen cada una su propio efecto e interacciones con el resto.</p>
             <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">I got the turn skeleton working quickly, but coding and testing each of the fifty effects, and every cross-interaction between them one by one, is the bulk of the project.</p>
-              <p data-lang="es">El esqueleto del turno lo resolví rápido, pero programar y testear cada uno de los cincuenta efectos, y sus cruces uno por uno, es el grueso del proyecto.</p>
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">The turn structure itself was straightforward to implement. The bulk of the project is coding and testing each of the fifty card effects individually, along with every cross-interaction between them.</p>
+              <p data-lang="es">La estructura del turno en sí fue sencilla de implementar. El grueso del proyecto consiste en programar y testear cada uno de los cincuenta efectos de las cartas de forma individual, junto con todas las interacciones cruzadas entre ellas.</p>
             </div>
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=scripta" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
@@ -901,12 +901,12 @@
               <h3>Dino Delivery</h3>
               <p class="meta"><span data-lang="en">Colorido Juegos &nbsp;·&nbsp; 2–4p &nbsp;·&nbsp; 15–30 min</span><span data-lang="es">Colorido Juegos &nbsp;·&nbsp; 2–4j &nbsp;·&nbsp; 15–30 min</span></p>
             </div>
-            <p class="summary" data-lang="en">A kids' game about delivering food orders by dinosaur, built to be understood without reading a word.</p>
-            <p class="summary" data-lang="es">Un juego para chicos sobre repartir pedidos de comida en dinosaurio, pensado para entenderse sin leer una palabra.</p>
+            <p class="summary" data-lang="en">A children's game about delivering food orders by dinosaur, designed to be understood without reading a single word.</p>
+            <p class="summary" data-lang="es">Un juego infantil sobre repartir pedidos de comida en dinosaurio, diseñado para entenderse sin leer una sola palabra.</p>
             <div class="hard-part">
-              <span class="hard-label" data-lang="en">The hard part</span><span class="hard-label" data-lang="es">Lo difícil</span>
-              <p data-lang="en">It's for kids, and that changed every decision I made — I built the interface to explain itself: big zones, near-zero required text, instant feedback on every action.</p>
-              <p data-lang="es">Es para chicos, y eso cambió todas mis decisiones de diseño: armé la interfaz para que se explique sola. Zonas grandes, cero texto imprescindible y feedback inmediato de cada acción.</p>
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">The game is designed for children, which shaped every interface decision: large interactive zones, minimal required text, and immediate feedback on every action.</p>
+              <p data-lang="es">El juego está diseñado para chicos, lo que definió cada decisión de interfaz: zonas grandes, texto mínimo y feedback inmediato en cada acción.</p>
             </div>
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
@@ -936,38 +936,38 @@
   <div class="steps">
     <div class="step">
       <span class="step-num">01</span>
-      <h3 data-lang="en">I read the rulebook</h3>
-      <h3 data-lang="es">Leo el reglamento</h3>
-      <p data-lang="en">All of it, and I tell you what translates cleanly to BGA, what's going to be hard, and what should work differently on a screen. No charge, no commitment.</p>
-      <p data-lang="es">Completo, y te digo qué se traduce bien a BGA, qué va a ser difícil y qué conviene resolver distinto en pantalla. Sin costo y sin compromiso.</p>
+      <h3 data-lang="en">Rulebook review</h3>
+      <h3 data-lang="es">Revisión del reglamento</h3>
+      <p data-lang="en">I read the complete rulebook and identify what maps cleanly to Board Game Arena, what will be difficult, and what should work differently on screen. There is no charge for this review, and no commitment attached.</p>
+      <p data-lang="es">Leo el reglamento completo e identifico qué se traduce bien a Board Game Arena, qué va a ser difícil y qué conviene resolver distinto en pantalla. Esta revisión no tiene costo ni genera ningún compromiso.</p>
     </div>
     <div class="step">
       <span class="step-num">02</span>
       <h3 data-lang="en">Playable prototype</h3>
       <h3 data-lang="es">Prototipo jugable</h3>
-      <p data-lang="en">I build the turn skeleton in BGA Studio. Before anything is locked in, you can already play a game and see where the shoe pinches.</p>
-      <p data-lang="es">Armo el esqueleto del turno en BGA Studio. Antes de cerrar nada ya se puede jugar una partida y ver dónde aprieta el zapato.</p>
+      <p data-lang="en">I build the turn structure in BGA Studio. Before any decision is final, the game can already be played, which surfaces problems early.</p>
+      <p data-lang="es">Construyo la estructura del turno en BGA Studio. Antes de cerrar ninguna decisión, el juego ya se puede jugar, lo que permite detectar problemas a tiempo.</p>
     </div>
     <div class="step">
       <span class="step-num">03</span>
       <h3 data-lang="en">Agreed scope</h3>
       <h3 data-lang="es">Alcance acordado</h3>
-      <p data-lang="en">I put the scope in writing before I build: player counts, solo mode or bots, variants, expansions, languages and timeline.</p>
-      <p data-lang="es">Te dejo el alcance por escrito antes de arrancar: cantidad de jugadores, modo solitario o bots, variantes, expansiones, idiomas y plazos.</p>
+      <p data-lang="en">I put the scope in writing before development starts: player counts, solo mode or bots, variants, expansions, languages, and timeline.</p>
+      <p data-lang="es">Dejo el alcance por escrito antes de empezar el desarrollo: cantidad de jugadores, modo solitario o bots, variantes, expansiones, idiomas y plazos.</p>
     </div>
     <div class="step">
       <span class="step-num">04</span>
-      <h3 data-lang="en">I build it</h3>
+      <h3 data-lang="en">Development</h3>
       <h3 data-lang="es">Desarrollo</h3>
-      <p data-lang="en">Rules, interface, mobile, replays, notifications, zombie mode and the translation system. You can sit at the development table whenever you want.</p>
-      <p data-lang="es">Reglas, interfaz, celular, replays, notificaciones, modo zombie y sistema de traducción. Podés entrar a la mesa de desarrollo cuando quieras.</p>
+      <p data-lang="en">Rules, interface, mobile support, replays, notifications, zombie mode, and the translation system. You can follow the development at any point.</p>
+      <p data-lang="es">Reglas, interfaz, versión para celular, replays, notificaciones, modo zombie y sistema de traducción. Podés seguir el desarrollo en cualquier momento.</p>
     </div>
     <div class="step">
       <span class="step-num">05</span>
       <h3 data-lang="en">Testing and release</h3>
       <h3 data-lang="es">Testeo y publicación</h3>
-      <p data-lang="en">I run the alpha with BGA testers, fix the rules I read wrong, adjust the interface, and stay with the game after it goes public.</p>
-      <p data-lang="es">Corro la alpha con testers de BGA, corrijo las reglas que interpreté mal, ajusto la interfaz, y sigo con el juego después del lanzamiento.</p>
+      <p data-lang="en">I run the alpha with BGA testers, correct any rules I implemented incorrectly, adjust the interface, and continue supporting the game after release.</p>
+      <p data-lang="es">Corro la alpha con testers de BGA, corrijo las reglas que haya implementado mal, ajusto la interfaz y sigo dando soporte al juego después del lanzamiento.</p>
     </div>
   </div>
 
@@ -977,19 +977,19 @@
     <ul>
       <li>
         <span class="check" aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6 6.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span data-lang="en">The final rulebook, including the edge cases that already came up in playtesting</span><span data-lang="es">El reglamento final, con los casos borde que ya hayan aparecido en testeo</span>
+        <span data-lang="en">The final rulebook, including any edge cases identified during playtesting</span><span data-lang="es">El reglamento final, incluyendo los casos borde identificados durante el testeo</span>
       </li>
       <li>
         <span class="check" aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6 6.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span data-lang="en">Someone who knows the rules and can answer the strange questions — they always show up</span><span data-lang="es">Alguien que sepa las reglas y me responda las dudas raras: siempre aparecen</span>
+        <span data-lang="en">A contact who knows the rules well and can answer edge-case questions as they arise</span><span data-lang="es">Un contacto que conozca bien las reglas y pueda responder preguntas sobre casos particulares a medida que surjan</span>
       </li>
       <li>
         <span class="check" aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6 6.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span data-lang="en">Production art: cards, board and icons in high resolution, separated and at the largest size available</span><span data-lang="es">Assets de producción: cartas, tablero e íconos en alta, separados y en el mayor tamaño disponible</span>
+        <span data-lang="en">Production assets: cards, board, and icons in high resolution, as separate files and at the largest size available</span><span data-lang="es">Assets de producción: cartas, tablero e íconos en alta resolución, en archivos separados y en el mayor tamaño disponible</span>
       </li>
       <li>
         <span class="check" aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3.5 6 6.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span data-lang="en">Answers on time: one ambiguous rule left unanswered stalls the whole build</span><span data-lang="es">Respuestas a tiempo: una regla ambigua sin respuesta frena el desarrollo entero</span>
+        <span data-lang="en">Timely answers: an unresolved ambiguous rule can delay the entire build</span><span data-lang="es">Respuestas a tiempo: una regla ambigua sin resolver puede demorar todo el desarrollo</span>
       </li>
     </ul>
   </div>
@@ -1001,6 +1001,8 @@
     <p class="eyebrow">FAQ</p>
     <h2 class="section-title" data-lang="en">Frequently asked questions</h2>
     <h2 class="section-title" data-lang="es">Preguntas frecuentes</h2>
+    <p class="section-sub" data-lang="en">Common questions from publishers before we start working together.</p>
+    <p class="section-sub" data-lang="es">Preguntas habituales de las editoriales antes de empezar a trabajar juntos.</p>
   </div>
 
   <div class="faq-list">
@@ -1009,48 +1011,48 @@
         <span data-lang="en">How long does an implementation take?</span><span data-lang="es">¿Cuánto tarda una implementación?</span>
         <span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 2v6M2 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </summary>
-      <p data-lang="en">It depends on the game. A simple turn with few exceptions moves fast; fifty unique cards that interact with each other takes far longer, and most of that time goes into testing the cross-interactions. I give you a real estimate after reading the rulebook, not before.</p>
-      <p data-lang="es">Depende del juego. Un turno simple con pocas excepciones avanza rápido; cincuenta cartas únicas que interactúan entre sí lleva mucho más, y el grueso de ese tiempo es testear los cruces. Te doy una estimación concreta después de leer el reglamento, no antes.</p>
+      <p data-lang="en">It depends on the game. A simple turn with few exceptions is quick to build; fifty unique cards with interactions between them take considerably longer, and most of that time goes into testing those interactions. I provide a firm estimate after reading the rulebook, not before.</p>
+      <p data-lang="es">Depende del juego. Un turno simple con pocas excepciones se resuelve rápido; cincuenta cartas únicas que interactúan entre sí llevan mucho más tiempo, y la mayor parte de ese tiempo se destina a testear esas interacciones. Te doy una estimación concreta después de leer el reglamento, no antes.</p>
     </details>
     <details class="faq-item">
       <summary>
         <span data-lang="en">Who owns the game and the artwork?</span><span data-lang="es">¿Quién es dueño del juego y del arte?</span>
         <span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 2v6M2 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </summary>
-      <p data-lang="en">The publisher. I claim no rights over the game or the assets — the development is work done on property that stays yours.</p>
-      <p data-lang="es">La editorial. Yo no reclamo derechos sobre el juego ni sobre los assets: el desarrollo es trabajo sobre una propiedad que sigue siendo tuya.</p>
+      <p data-lang="en">The publisher. I claim no rights over the game or its assets. The development work is carried out on property that remains yours throughout and after the engagement.</p>
+      <p data-lang="es">La editorial. No reclamo derechos sobre el juego ni sobre sus assets. El desarrollo se realiza sobre una propiedad que sigue siendo tuya durante y después del trabajo.</p>
     </details>
     <details class="faq-item">
       <summary>
         <span data-lang="en">How does revenue work on Board Game Arena?</span><span data-lang="es">¿Cómo funciona el ingreso en Board Game Arena?</span>
         <span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 2v6M2 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </summary>
-      <p data-lang="en">The license is signed between the publisher and BGA, and BGA shares premium subscription revenue based on how much each game is played. I'm not part of that agreement — my side is the development, and it's agreed separately with you.</p>
-      <p data-lang="es">La licencia se firma entre la editorial y BGA, y BGA reparte ingresos de las suscripciones premium según cuánto se juega cada juego. Yo no participo de ese acuerdo: mi parte es el desarrollo y se acuerda aparte con vos.</p>
+      <p data-lang="en">The license is signed between the publisher and BGA, and BGA distributes premium subscription revenue based on how much each game is played. I am not party to that agreement. My side of the arrangement is the development work, which is agreed separately with you.</p>
+      <p data-lang="es">La licencia se firma entre la editorial y BGA, y BGA distribuye los ingresos de las suscripciones premium según cuánto se juega cada título. Yo no soy parte de ese acuerdo: mi parte es el desarrollo, que se acuerda por separado con vos.</p>
     </details>
     <details class="faq-item">
       <summary>
         <span data-lang="en">Do you work alone?</span><span data-lang="es">¿Trabajás solo?</span>
         <span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 2v6M2 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </summary>
-      <p data-lang="en">Yes. Rules, interface, mobile and testing are all mine, so there's a single person between the rulebook and the code and nothing gets lost in translation. For open testing I lean on the BGA alpha tester community.</p>
-      <p data-lang="es">Sí. Reglas, interfaz, celular y testeo los hago yo, así que hay una sola persona entre el reglamento y el código y no hay teléfono descompuesto. Para el testeo abierto me apoyo en la comunidad de alpha testers de BGA.</p>
+      <p data-lang="en">Yes. I am responsible for the rules, the interface, mobile support, and testing, so there is a single point of contact between the rulebook and the code. For open testing, I rely on the BGA alpha tester community.</p>
+      <p data-lang="es">Sí. Estoy a cargo de las reglas, la interfaz, la versión para celular y el testeo, así que hay un solo punto de contacto entre el reglamento y el código. Para el testeo abierto, me apoyo en la comunidad de alpha testers de BGA.</p>
     </details>
     <details class="faq-item">
       <summary>
         <span data-lang="en">What happens after launch?</span><span data-lang="es">¿Qué pasa después del lanzamiento?</span>
         <span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 2v6M2 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </summary>
-      <p data-lang="en">I stay with the game: bugs reported by players, interface adjustments, and updates when an expansion comes out or a rule is corrected.</p>
-      <p data-lang="es">Me quedo con el juego: bugs que reportan los jugadores, ajustes de interfaz, y actualizaciones si sale una expansión o se corrige una regla.</p>
+      <p data-lang="en">I continue supporting the game after release: fixing bugs reported by players, adjusting the interface, and updating the implementation when an expansion is published or a rule is corrected.</p>
+      <p data-lang="es">Sigo dando soporte al juego después del lanzamiento: corrijo bugs reportados por jugadores, ajusto la interfaz, y actualizo la implementación cuando sale una expansión o se corrige una regla.</p>
     </details>
     <details class="faq-item">
       <summary>
         <span data-lang="en">What languages do you work in?</span><span data-lang="es">¿En qué idiomas trabajás?</span>
         <span class="faq-plus" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 2v6M2 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </summary>
-      <p data-lang="en">Spanish and English. I ship the game wired into BGA's translation system, so the community can add the rest of the languages on top.</p>
-      <p data-lang="es">Español e inglés. Subo el juego enganchado al sistema de traducción de BGA, así que la comunidad puede sumar el resto de los idiomas encima.</p>
+      <p data-lang="en">Spanish and English. I deliver the game integrated with BGA's translation system, which allows the community to add further languages afterward.</p>
+      <p data-lang="es">Español e inglés. Entrego el juego integrado al sistema de traducción de BGA, lo que permite que la comunidad sume otros idiomas más adelante.</p>
     </details>
   </div>
 </section>
@@ -1062,8 +1064,8 @@
     <p class="eyebrow" data-lang="es">Contacto</p>
     <h2 class="section-title" data-lang="en">Have a game you want to see on BGA?</h2>
     <h2 class="section-title" data-lang="es">¿Tenés un juego que querés ver en BGA?</h2>
-    <p class="contact-body" data-lang="en">Send me the rulebook. I'll read it, tell you which parts would be hard to implement, and whether it makes sense to move forward. No cost, no commitment.</p>
-    <p class="contact-body" data-lang="es">Mandame el reglamento. Lo leo, te digo qué partes serían difíciles de implementar y si tiene sentido seguir adelante. Sin costo, sin compromiso.</p>
+    <p class="contact-body" data-lang="en">Send me the rulebook. I will read it, tell you which parts would be difficult to implement, and whether moving forward makes sense. There is no cost and no commitment.</p>
+    <p class="contact-body" data-lang="es">Mandame el reglamento. Lo leo, te digo qué partes serían más difíciles de implementar, y si tiene sentido seguir adelante. No tiene costo ni genera ningún compromiso.</p>
     <a class="contact-mail" href="mailto:joaquinkoncurat@gmail.com?subject=BGA">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.3"/>
