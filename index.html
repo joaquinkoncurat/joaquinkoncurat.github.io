@@ -244,7 +244,42 @@
   }
   .js-carousel .game-card.card-in{opacity:1;transform:none;}
 
-  .card-media{padding:12px 12px 0;}
+  .card-media{position:relative;padding:12px 12px 0;}
+
+  /* Which recording the card shows. Without JS only the landscape clip
+     exists and the button stays hidden; the script sets the starting
+     state per width and the button flips it per card. */
+  .media-frame.tall{display:none;}
+  .game-card.view-desk .media-frame.wide{display:block;}
+  .game-card.view-desk .media-frame.tall{display:none;}
+  .game-card.view-phone .media-frame.tall{display:block;}
+  .game-card.view-phone .media-frame.wide{display:none;}
+
+  .view-toggle{
+    display:none;
+    position:absolute;
+    top:20px;
+    right:20px;
+    z-index:2;
+    width:30px;
+    height:30px;
+    padding:0;
+    border:0;
+    border-radius:6px;
+    background:rgba(0,0,0,0.6);
+    color:var(--ga);
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+    -webkit-backdrop-filter:blur(4px);
+    backdrop-filter:blur(4px);
+    transition:background 0.15s ease;
+  }
+  .js-carousel .view-toggle{display:flex;}
+  .view-toggle:hover{background:rgba(0,0,0,0.88);}
+  .view-toggle .icon-desk{display:none;}
+  .game-card.view-phone .view-toggle .icon-phone{display:none;}
+  .game-card.view-phone .view-toggle .icon-desk{display:block;}
   .card-media.bottom{padding:0 12px 12px;}
   .media-frame{
     position:relative;
@@ -584,18 +619,6 @@
     .contact-card{padding:32px 22px;}
     .btn-primary{display:block;text-align:center;}
     .car-side{top:150px;}
-    /* Both recordings on a phone: the vertical capture on top, the
-       landscape one under the text. The top landscape frame gives way to
-       the vertical one, except on a game that has no phone capture and
-       so keeps its landscape clip up there. */
-    .media-frame.tall{display:block;}
-    .card-media.bottom{display:block;}
-    .card-media:not(.bottom) .media-frame.wide:not(.keep){display:none;}
-  }
-  @media (min-width:768px){
-    /* Desktop shows the desktop recording only. */
-    .media-frame.tall{display:none;}
-    .card-media.bottom{display:none;}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -648,10 +671,10 @@
 <header class="hero">
   <p class="eyebrow" data-lang="en">Board Game Arena developer</p>
   <p class="eyebrow" data-lang="es">Desarrollador de juegos en BGA</p>
-  <h1 data-lang="en">I take published board games to Board Game Arena.</h1>
-  <h1 data-lang="es">Llevo juegos de mesa publicados a Board Game Arena.</h1>
-  <p class="hero-sub" data-lang="en">I translate mechanics into code, from a publisher's rulebook to a live game on BGA Studio.</p>
-  <p class="hero-sub" data-lang="es">Traduzco mecánicas a código, del reglamento de la editorial a un juego funcionando en BGA Studio.</p>
+  <h1 data-lang="en">Your game on Board Game Arena, with every rule intact.</h1>
+  <h1 data-lang="es">Tu juego en Board Game Arena, con todas las reglas.</h1>
+  <p class="hero-sub" data-lang="en">I turn rulebooks into code, not into summaries. Six published games back that up.</p>
+  <p class="hero-sub" data-lang="es">Traduzco reglamentos a código, no a resúmenes. Seis juegos publicados lo demuestran.</p>
   <div class="hero-cta">
     <a class="btn-primary" href="#contact">
       <span data-lang="en">Let's talk about your game</span><span data-lang="es">Hablemos de tu juego</span>
@@ -687,7 +710,10 @@
         <!-- 216 -->
         <li class="game-card" style="--ga:#38bdf8;--ga-soft:rgba(56,189,248,0.13);--ga-line:rgba(56,189,248,0.27)">
           <div class="card-media">
-            <div class="media-frame wide">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>            <div class="media-frame wide">
               <video class="card-video desk" src="assets/video/216.mp4" poster="assets/img/poster/216.jpg" preload="none" muted loop playsinline></video>
               <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
             </div>
@@ -713,18 +739,15 @@
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
             </a>
           </div>
-          <div class="card-media bottom">
-            <div class="media-frame wide">
-              <video class="card-video inline-desk" src="assets/video/216.mp4" poster="assets/img/poster/216.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
-            </div>
-          </div>
         </li>
 
         <!-- Girasoles -->
         <li class="game-card" style="--ga:#fbbf24;--ga-soft:rgba(251,191,36,0.13);--ga-line:rgba(251,191,36,0.27)">
           <div class="card-media">
-            <div class="media-frame wide">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>            <div class="media-frame wide">
               <video class="card-video desk" src="assets/video/girasoles.mp4" poster="assets/img/poster/girasoles.jpg" preload="none" muted loop playsinline></video>
               <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
             </div>
@@ -750,18 +773,15 @@
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
             </a>
           </div>
-          <div class="card-media bottom">
-            <div class="media-frame wide">
-              <video class="card-video inline-desk" src="assets/video/girasoles.mp4" poster="assets/img/poster/girasoles.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
-            </div>
-          </div>
         </li>
 
         <!-- Rivales -->
         <li class="game-card" style="--ga:#fb923c;--ga-soft:rgba(251,146,60,0.13);--ga-line:rgba(251,146,60,0.27)">
           <div class="card-media">
-            <div class="media-frame wide">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>            <div class="media-frame wide">
               <video class="card-video desk" src="assets/video/rivales.mp4" poster="assets/img/poster/rivales.jpg" preload="none" muted loop playsinline></video>
               <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
             </div>
@@ -787,18 +807,15 @@
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
             </a>
           </div>
-          <div class="card-media bottom">
-            <div class="media-frame wide">
-              <video class="card-video inline-desk" src="assets/video/rivales.mp4" poster="assets/img/poster/rivales.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
-            </div>
-          </div>
         </li>
 
         <!-- Dino Delivery -->
         <li class="game-card" style="--ga:#4ade80;--ga-soft:rgba(74,222,128,0.13);--ga-line:rgba(74,222,128,0.27)">
           <div class="card-media">
-            <div class="media-frame wide">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>            <div class="media-frame wide">
               <video class="card-video desk" src="assets/video/dinodelivery.mp4" poster="assets/img/poster/dinodelivery.jpg" preload="none" muted loop playsinline></video>
               <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
             </div>
@@ -823,12 +840,6 @@
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=dinodelivery" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
             </a>
-          </div>
-          <div class="card-media bottom">
-            <div class="media-frame wide">
-              <video class="card-video inline-desk" src="assets/video/dinodelivery.mp4" poster="assets/img/poster/dinodelivery.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
-            </div>
           </div>
         </li>
 
@@ -863,7 +874,10 @@
         <!-- Scripta -->
         <li class="game-card" style="--ga:#a78bfa;--ga-soft:rgba(167,139,250,0.13);--ga-line:rgba(167,139,250,0.27)">
           <div class="card-media">
-            <div class="media-frame wide">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>            <div class="media-frame wide">
               <video class="card-video desk" src="assets/video/scripta.mp4" poster="assets/img/poster/scripta.jpg" preload="none" muted loop playsinline></video>
               <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
             </div>
@@ -888,12 +902,6 @@
             <a class="play-link" href="https://boardgamearena.com/gamepanel?game=scripta" target="_blank" rel="noopener">
               <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
             </a>
-          </div>
-          <div class="card-media bottom">
-            <div class="media-frame wide">
-              <video class="card-video inline-desk" src="assets/video/scripta.mp4" poster="assets/img/poster/scripta.jpg" preload="none" muted loop playsinline></video>
-              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
-            </div>
           </div>
         </li>
 
@@ -1242,6 +1250,54 @@
 
     window.__renderCarousel = render;
     render();
+  })();
+
+  // Per-card view switch. The width picks the starting view; the corner
+  // button overrides it for that card and then stays where the user put
+  // it, so a later resize doesn't undo their choice.
+  (function(){
+    var phoneQuery = window.matchMedia('(max-width: 767px)');
+
+    function playVisible(card){
+      card.querySelectorAll('video').forEach(function(v){
+        if(v.getBoundingClientRect().height > 0){
+          var p = v.play();
+          if(p && p.catch){ p.catch(function(){}); }
+        } else if(!v.paused){
+          v.pause();
+        }
+      });
+    }
+
+    function setView(card, view){
+      card.classList.toggle('view-phone', view === 'phone');
+      card.classList.toggle('view-desk', view !== 'phone');
+      var btn = card.querySelector('.view-toggle');
+      if(btn) btn.setAttribute('aria-pressed', view === 'phone' ? 'true' : 'false');
+    }
+
+    var cards = document.querySelectorAll('.game-card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.view-toggle');
+      if(!btn) return;
+      setView(card, phoneQuery.matches ? 'phone' : 'desk');
+      btn.addEventListener('click', function(){
+        card.dataset.userSet = '1';
+        setView(card, card.classList.contains('view-phone') ? 'desk' : 'phone');
+        playVisible(card);
+      });
+    });
+
+    function onWidthChange(){
+      cards.forEach(function(card){
+        if(card.dataset.userSet) return;
+        if(!card.querySelector('.view-toggle')) return;
+        setView(card, phoneQuery.matches ? 'phone' : 'desk');
+        playVisible(card);
+      });
+    }
+    if(phoneQuery.addEventListener) phoneQuery.addEventListener('change', onWidthChange);
+    else if(phoneQuery.addListener) phoneQuery.addListener(onWidthChange);
   })();
 
   // Videos are preload="none" and only start once visible, so a visit
