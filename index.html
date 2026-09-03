@@ -255,7 +255,9 @@
   .game-card.view-desk .media-frame.wide{display:block;}
   .game-card.view-desk .media-frame.tall{display:none;}
   .game-card.view-phone .media-frame.tall{display:block;}
-  .game-card.view-phone .media-frame.wide{display:none;}
+  /* A game with no phone capture keeps its landscape clip even in phone
+     view, so the switch never leaves a card with an empty frame. */
+  .game-card.view-phone .media-frame.wide:not(.keep){display:none;}
 
   .view-toggle{
     display:none;
@@ -1254,14 +1256,20 @@
     render();
   })();
 
-  // Per-card view switch. The width picks the starting view; the corner
-  // button overrides it for that card and then stays where the user put
-  // it, so a later resize doesn't undo their choice.
+  // View switch. One state for the whole carousel: pressing any card's
+  // corner button puts every card in that view, so the three cards on
+  // screen stay comparable instead of drifting apart. The width picks the
+  // starting view, and once someone presses the button their choice holds
+  // through later resizes.
   (function(){
     var phoneQuery = window.matchMedia('(max-width: 767px)');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.game-card'));
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.view-toggle'));
+    if(!cards.length) return;
+    var chosen = false;
 
-    function playVisible(card){
-      card.querySelectorAll('video').forEach(function(v){
+    function playVisible(){
+      document.querySelectorAll('.game-card video').forEach(function(v){
         if(v.getBoundingClientRect().height > 0){
           var p = v.play();
           if(p && p.catch){ p.catch(function(){}); }
@@ -1271,32 +1279,30 @@
       });
     }
 
-    function setView(card, view){
-      card.classList.toggle('view-phone', view === 'phone');
-      card.classList.toggle('view-desk', view !== 'phone');
-      var btn = card.querySelector('.view-toggle');
-      if(btn) btn.setAttribute('aria-pressed', view === 'phone' ? 'true' : 'false');
+    function apply(phone){
+      cards.forEach(function(card){
+        card.classList.toggle('view-phone', phone);
+        card.classList.toggle('view-desk', !phone);
+      });
+      buttons.forEach(function(btn){
+        btn.setAttribute('aria-pressed', phone ? 'true' : 'false');
+      });
     }
 
-    var cards = document.querySelectorAll('.game-card');
-    cards.forEach(function(card){
-      var btn = card.querySelector('.view-toggle');
-      if(!btn) return;
-      setView(card, phoneQuery.matches ? 'phone' : 'desk');
+    apply(phoneQuery.matches);
+
+    buttons.forEach(function(btn){
       btn.addEventListener('click', function(){
-        card.dataset.userSet = '1';
-        setView(card, card.classList.contains('view-phone') ? 'desk' : 'phone');
-        playVisible(card);
+        chosen = true;
+        apply(!cards[0].classList.contains('view-phone'));
+        playVisible();
       });
     });
 
     function onWidthChange(){
-      cards.forEach(function(card){
-        if(card.dataset.userSet) return;
-        if(!card.querySelector('.view-toggle')) return;
-        setView(card, phoneQuery.matches ? 'phone' : 'desk');
-        playVisible(card);
-      });
+      if(chosen) return;
+      apply(phoneQuery.matches);
+      playVisible();
     }
     if(phoneQuery.addEventListener) phoneQuery.addEventListener('change', onWidthChange);
     else if(phoneQuery.addListener) phoneQuery.addListener(onWidthChange);
