@@ -1097,12 +1097,11 @@
 </footer>
 
 <script>
-  // Language toggle (EN / ES), remembered in localStorage.
+  // Language toggle (EN / ES). Always opens in English; the toggle only
+  // switches for the current visit and is not remembered between visits.
   (function(){
     var html = document.documentElement;
     var btn = document.getElementById('langToggle');
-    var saved;
-    try { saved = localStorage.getItem('lang'); } catch(e) { saved = null; }
     function apply(lang){
       if(lang === 'es'){
         html.classList.add('lang-es');
@@ -1114,11 +1113,10 @@
         btn.textContent = 'ES';
       }
     }
-    var current = saved === 'es' ? 'es' : 'en';
+    var current = 'en';
     apply(current);
     btn.addEventListener('click', function(){
       current = current === 'en' ? 'es' : 'en';
-      try { localStorage.setItem('lang', current); } catch(e) {}
       apply(current);
       if(window.__renderCarousel){ window.__renderCarousel(); }
     });
