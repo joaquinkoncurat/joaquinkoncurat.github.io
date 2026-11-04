@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joaquín Koncurat — Board Game Arena Developer</title>
-<meta name="description" content="I take published tabletop games to Board Game Arena — from a publisher's rulebook to a live game on BGA Studio. Six games in alpha and beta, playable now.">
+<meta name="description" content="I take published tabletop games to Board Game Arena — from a publisher's rulebook to a live game on BGA Studio. Seven games in alpha and beta, playable now.">
 <link rel="canonical" href="https://joaquinkoncurat.github.io/">
 <meta name="theme-color" content="#080809">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://joaquinkoncurat.github.io/">
 <meta property="og:title" content="Joaquín Koncurat — Board Game Arena Developer">
-<meta property="og:description" content="I take published tabletop games to BGA — rulebook to release, mobile-ready and replay-ready. Six games playable now.">
+<meta property="og:description" content="I take published tabletop games to BGA — rulebook to release, mobile-ready and replay-ready. Seven games playable now.">
 <meta property="og:image" content="https://joaquinkoncurat.github.io/assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -246,12 +246,15 @@
   }
   .js-carousel .game-card.card-in{opacity:1;transform:none;}
 
-  /* Title on the left, play button on the right, above the video. */
+  /* Title on the left, play button on the right, above the video. The
+     minimum height is the button's, so a game not yet on BGA (no button)
+     keeps its video level with its neighbours. */
   .card-head{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:12px;
+    min-height:46px;
     padding:16px 16px 0;
   }
   .card-head h3{
@@ -349,6 +352,11 @@
     background:rgba(255,255,255,0.06);
     color:#a0a0b0;
     border:1px solid var(--border-2);
+  }
+  .badge.dev{
+    background:transparent;
+    color:var(--text-3);
+    border:1px dashed rgba(255,255,255,0.22);
   }
   .card-body h3{
     font-size:1.15rem;
@@ -720,8 +728,8 @@
     <p class="eyebrow" data-lang="es">Trabajo publicado</p>
     <h2 class="section-title" data-lang="en">Games developed</h2>
     <h2 class="section-title" data-lang="es">Juegos desarrollados</h2>
-    <p class="section-sub" data-lang="en">Playable today, with the publisher credited and a direct link.</p>
-    <p class="section-sub" data-lang="es">Jugables hoy, con la editorial nombrada y el link directo.</p>
+    <p class="section-sub" data-lang="en">With the publisher credited, and a direct link to every game already on BGA.</p>
+    <p class="section-sub" data-lang="es">Con la editorial nombrada y el link directo a cada juego que ya está en BGA.</p>
   </div>
 
   <div class="carousel">
@@ -936,6 +944,73 @@
               <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
               <p data-lang="en">The game is designed for children, which shaped every interface decision: large interactive zones, minimal required text, and immediate feedback on every action.</p>
               <p data-lang="es">El juego está diseñado para chicos, lo que definió cada decisión de interfaz: zonas grandes, texto mínimo y feedback inmediato en cada acción.</p>
+            </div>
+          </div>
+        </li>
+
+        <!-- Compostate Bien -->
+        <li class="game-card" style="--ga:#f472b6;--ga-soft:rgba(244,114,182,0.13);--ga-line:rgba(244,114,182,0.27)">
+          <div class="card-head">
+            <h3>Compostate Bien</h3>
+            <a class="play-link" href="https://boardgamearena.com/gamepanel?game=compostatebien" target="_blank" rel="noopener">
+              <span data-lang="en">Play on BGA →</span><span data-lang="es">Jugar en BGA →</span>
+            </a>
+          </div>
+          <div class="card-media">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="media-frame wide">
+              <video class="card-video desk" src="assets/video/compostatebien.mp4" poster="assets/img/poster/compostatebien.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
+            </div>
+            <div class="media-frame tall">
+              <video class="card-video mob" src="assets/video/mobile/compostatebien.mp4" poster="assets/img/poster/mobile/compostatebien.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Mobile view</span><span class="media-label" data-lang="es">Vista en celular</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="badge alpha"><span data-lang="en">Public alpha</span><span data-lang="es">Versión Alpha pública</span></span>
+            <p class="meta"><span data-lang="en">Compostate Bien &nbsp;·&nbsp; 2–5p &nbsp;·&nbsp; 30 min</span><span data-lang="es">Compostate Bien &nbsp;·&nbsp; 2–5j &nbsp;·&nbsp; 30 min</span></p>
+            <p class="summary" data-lang="en">A dice-and-trading game in which players are the critters of a compost bin, gathering dry material, moisture and oxygen to compost organic waste.</p>
+            <p class="summary" data-lang="es">Un juego de dados e intercambio en el que los jugadores son los bichos de una compostera, y juntan material seco, humedad y oxígeno para compostar residuos orgánicos.</p>
+            <div class="hard-part">
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">Trading between players, negotiated out loud at a physical table, became a formal exchange: the active player makes an offer, the others answer at the same time, and the offerer picks a partner. The server rechecks both players' resources before the swap.</p>
+              <p data-lang="es">El trueque entre jugadores, que en la mesa física se negocia en voz alta, se convirtió en un intercambio formal: el jugador activo hace una oferta, los demás responden al mismo tiempo y quien ofrece elige con quién cerrar. El servidor vuelve a comprobar los recursos de ambos antes del intercambio.</p>
+            </div>
+          </div>
+        </li>
+
+        <!-- Guardianes de la Huerta -->
+        <li class="game-card" style="--ga:#f87171;--ga-soft:rgba(248,113,113,0.13);--ga-line:rgba(248,113,113,0.27)">
+          <div class="card-head">
+            <h3>Guardianes de la Huerta</h3>
+          </div>
+          <div class="card-media">
+            <button class="view-toggle" type="button" aria-pressed="false" aria-label="Desktop / phone view">
+              <svg class="icon-phone" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="4" y="1" width="6" height="12" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M6.2 11h1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg class="icon-desk" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="2.5" width="12" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/><path d="M5 12.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="media-frame wide">
+              <video class="card-video desk" src="assets/video/guardianesdelahuerta.mp4" poster="assets/img/poster/guardianesdelahuerta.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Desktop view</span><span class="media-label" data-lang="es">Vista en escritorio</span>
+            </div>
+            <div class="media-frame tall">
+              <video class="card-video mob" src="assets/video/mobile/guardianesdelahuerta.mp4" poster="assets/img/poster/mobile/guardianesdelahuerta.jpg" preload="none" muted loop playsinline></video>
+              <span class="media-label" data-lang="en">Mobile view</span><span class="media-label" data-lang="es">Vista en celular</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="badge dev"><span data-lang="en">In development</span><span data-lang="es">En desarrollo</span></span>
+            <p class="meta"><span data-lang="en">Compostate Bien &nbsp;·&nbsp; 1–4p &nbsp;·&nbsp; 20 min</span><span data-lang="es">Compostate Bien &nbsp;·&nbsp; 1–4j &nbsp;·&nbsp; 20 min</span></p>
+            <p class="summary" data-lang="en">A card-laying game in which players build a shared vegetable garden and place Guardians to protect the crops of each season.</p>
+            <p class="summary" data-lang="es">Un juego de colocación de cartas en el que los jugadores arman una huerta compartida y ubican Guardianes para proteger los cultivos de cada temporada.</p>
+            <div class="hard-part">
+              <span class="hard-label" data-lang="en">Implementation challenge</span><span class="hard-label" data-lang="es">Desafío de implementación</span>
+              <p data-lang="en">Each card is laid over the ones on the table, covering one to three of their spaces in any of four orientations. The shared garden grows in every direction, so the table became a canvas with zoom and pan, and the legal positions are recalculated every turn.</p>
+              <p data-lang="es">Cada carta se apoya sobre las de la mesa, tapando de uno a tres de sus espacios en cualquiera de cuatro orientaciones. La huerta compartida crece hacia todos lados, así que la mesa se convirtió en un lienzo con zoom y desplazamiento, y las posiciones válidas se recalculan en cada turno.</p>
             </div>
           </div>
         </li>
